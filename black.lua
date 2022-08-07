@@ -15450,7 +15450,7 @@ if not msg.ControllerBot then
 return send(msg_chat_id,msg_id,'\n⇜ هذا الامر يخص ( المطور الاساسي ) بس ',"md",true)  
 end
  os.execute('rm -rf black.lua')
--- download('https://raw.githubusercontent.com/Alhmirey1/botvs/main/black.lua','black.lua')
+ download('https://raw.githubusercontent.com/Alhmirey1/botvs/main/black.lua','black.lua')
 return send(msg_chat_id,msg_id,'\n*⇜ تم تحديث السورس يا قلبي الحميري * ',"md",true)  
 end
 
