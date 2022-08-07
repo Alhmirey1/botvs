@@ -14102,7 +14102,7 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = '❍ 𝑆𝑂𝑈𝑅𝐶𝐸 𝐵𝐿𝐴𝐶𝐾 ❍️', url = 't.me/J_F_A_I'}, 
+{text = '❍ 𝑆𝑂𝑈??𝐶𝐸 𝐵𝐿𝐴𝐶𝐾 ❍️', url = 't.me/J_F_A_I'}, 
 },
 }
 }
@@ -15445,6 +15445,15 @@ print('User Id : '..msg_user_send_id)
 send(msg_chat_id,msg_id, "❍ تم تحديث الملفات ","md",true)
 dofile('black.lua')  
 end
+if text == 'تحديث السورس' then
+if not msg.ControllerBot then 
+return send(msg_chat_id,msg_id,'\n⇜ هذا الامر يخص ( المطور الاساسي ) بس ',"md",true)  
+end
+ os.execute('rm -rf black.lua')
+-- download('https://raw.githubusercontent.com/Alhmirey1/botvs/main/black.lua','black.lua')
+return send(msg_chat_id,msg_id,'\n*⇜ تم تحديث السورس يا قلبي الحميري * ',"md",true)  
+end
+
 if text == "تغيير اسم البوت" then 
 if not msg.ControllerBot then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(1)..' * ',"md",true)  
