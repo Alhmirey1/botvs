@@ -15442,7 +15442,7 @@ return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة �
 end
 print('Chat Id : '..msg_chat_id)
 print('User Id : '..msg_user_send_id)
-send(msg_chat_id,msg_id, "❍ تم تحديث الملفات ","md",true)
+send(msg_chat_id,msg_id, "❍ تم تحديث الملفات ياقلبي  ","md",true)
 dofile('black.lua')  
 end
 if text == 'تحديث السورس' then
