@@ -15451,9 +15451,9 @@ return send(msg_chat_id,msg_id,'\n⇜ هذا الامر يخص ( المطور ا
 end
  os.execute('rm -rf black.lua')
  download('https://raw.githubusercontent.com/Alhmirey1/botvs/main/black.lua','black.lua')
- send(msg_chat_id,msg_id,'\n*⇜ تم تحديث السورس يا رووحي و قلبي انتظر قليلاـ سوف يتم تحديث الملفاات   * ',"md",true)  
+return  send(msg_chat_id,msg_id,'\n*⇜ تم تحديث السورس يا رووحي و قلبي انتظر قليلاـ سوف يتم تحديث الملفاات   * ',"md",true)  
  sleep(2)
-send(msg_chat_id,msg_id, "❍ تم تحديث الملفات ياقلبي  ","md",true)
+return  send(msg_chat_id,msg_id, "❍ تم تحديث الملفات ياقلبي  ","md",true)
 dofile('black.lua')  
 end
 if text == 'السيرفر' then
