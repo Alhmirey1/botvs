@@ -15452,9 +15452,6 @@ end
  os.execute('rm -rf black.lua')
  download('https://raw.githubusercontent.com/Alhmirey1/botvs/main/black.lua','black.lua')
 return  send(msg_chat_id,msg_id,'\n*⇜ تم تحديث السورس يا رووحي و قلبي انتظر قليلاـ سوف يتم تحديث الملفاات   * ',"md",true)  
- sleep(2)
-return  send(msg_chat_id,msg_id, "❍ تم تحديث الملفات ياقلبي  ","md",true)
-dofile('black.lua')  
 end
 if text == 'السيرفر' then
 if not msg.ControllerBot then 
