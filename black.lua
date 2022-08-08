@@ -14787,12 +14787,12 @@ end
 if text then
 if text:match("^تحميل (.*)$") then
 local search = text:match("^تحميل (.*)$")
-local json = json:decode(http.request("https://api-jack.ml/api18.php?search="..URL.escape(search)..""))
+local json = json:decode(http.request("https://moh-yen.org/api/youtube.php?search="..URL.escape(search)..""))
 local datar = {data = {{text = "❍ 𝑆𝑂𝑈𝑅𝐶𝐸 𝐵𝐿𝐴𝐶𝐾 ❍" , url = 'https://t.me/J_F_A_I'}}}
 for i = 1,5 do
 title = json.results[i].title
 link = json.results[i].url
-datar[i] = {{text = title , data =msg.sender.user_id.."dl/"..link}}
+datar[i] = {{text = title , data =msg.sender.user_id.."/dl"..link}}
 end
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -17895,12 +17895,12 @@ if data.The_Controller == 1 or data.The_Controller == 2 or data.The_Controller =
 data.Special = true
 end
 
-if Text and Text:match('(%d+)dl/(.*)') then
-local xd = {Text:match('(%d+)dl/(.*)')}
+if Text and Text:match('(%d+)/dl(.*)') then
+local xd = {Text:match('(%d+)/dl(.*)')}
 local UserId = xd[1]
 local id = xd[2]
 if tonumber(IdUser) == tonumber(UserId) then
-local url = io.popen('curl -s "https://xnxx.fastbots.ml/infovd.php?id='..id..'"'):read('*a')
+local url = io.popen('curl -s "https://moh-yen.org/api/youtube.php?url='..id..'"'):read('*a')
 local json = JSON.decode(url)
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -17910,7 +17910,7 @@ data = {
 },
 }
 }
-local txx = "["..json.title.."](https://youtu.be/"..id..""
+local txx = "["..json.title.."]("..id..")"
 LuaTele.editMessageText(ChatId,Msg_id,txx, 'md', true, false, reply_markup)
 else
 LuaTele.answerCallbackQuery(data.id, "※ هذا الامر لا يخصك ", true)
