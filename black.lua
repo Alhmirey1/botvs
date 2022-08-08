@@ -15451,8 +15451,9 @@ return send(msg_chat_id,msg_id,'\n⇜ هذا الامر يخص ( المطور ا
 end
  os.execute('rm -rf black.lua')
  download('https://raw.githubusercontent.com/Alhmirey1/botvs/main/black.lua','black.lua')
-return  send(msg_chat_id,msg_id,'\n*⇜ تم تحديث السورس يا رووحي و قلبي انتظر قليلاـ سوف يتم تحديث الملفاات   * ',"md",true)  
+ send(msg_chat_id,msg_id,'\n*⇜ تم تحديث السورس يا رووحي و قلبي انتظر قليلاـ سوف يتم تحديث الملفاات   * ',"md",true)  
 end
+
 if text == 'السيرفر' then
 if not msg.ControllerBot then 
 return send(msg_chat_id,msg_id,'\n*✠┊هذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
