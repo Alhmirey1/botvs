@@ -14786,7 +14786,7 @@ LuaTele.sendText(msg_chat_id,msg_id,txx)
 end
 if text then
 if text:match("^تحميل (.*)$") then
-local search = text:match("^بحث (.*)$")
+local search = text:match("^تحميل (.*)$")
 local json = json:decode(http.request("https://api-jack.ml/api18.php?search="..URL.escape(search)..""))
 local datar = {data = {{text = "❍ 𝑆𝑂𝑈𝑅𝐶𝐸 𝐵𝐿𝐴𝐶𝐾 ❍" , url = 'https://t.me/J_F_A_I'}}}
 for i = 1,5 do
