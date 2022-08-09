@@ -17902,7 +17902,12 @@ local id = xd[2]
 if tonumber(IdUser) == tonumber(UserId) then
 local url = io.popen('curl -s "https://moh-yen.org/api/youtube.php?url='..id..'"'):read('*a')
 local json = JSON.decode(url)
-local titles = json.title
+local title = json.title
+local title = title:gsub("/","-") 
+local title = title:gsub("\n","-") 
+local title = title:gsub("|","-") 
+local title = title:gsub("'","-") 
+local title = title:gsub('"',"-") 
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
@@ -17911,7 +17916,7 @@ data = {
 },
 }
 }
-local txx = "["..titles.."]("..id..")"
+local txx = "["..title.."]("..id..")"
 LuaTele.editMessageText(ChatId,Msg_id,txx, 'md', true, false, reply_markup)
 else
 LuaTele.answerCallbackQuery(data.id, "※ هذا الامر لا يخصك ", true)
@@ -17933,7 +17938,7 @@ local title = title:gsub("\n","-")
 local title = title:gsub("|","-") 
 local title = title:gsub("'","-") 
 local title = title:gsub('"',"-") 
-local p = json.p
+local p = json.P
 local p = p:gsub("/","-") 
 local p = p:gsub("\n","-") 
 local p = p:gsub("|","-") 
