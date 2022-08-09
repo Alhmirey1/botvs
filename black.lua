@@ -17911,7 +17911,7 @@ data = {
 },
 }
 }
-local txx = "[" ..titles.. "]("..id.. ")"
+local txx = "["..titles.."]("..id..")"
 LuaTele.editMessageText(ChatId,Msg_id,txx, 'md', true, false, reply_markup)
 else
 LuaTele.answerCallbackQuery(data.id, "※ هذا الامر لا يخصك ", true)
