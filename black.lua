@@ -138,6 +138,20 @@ end
 end
 LuaTele.editMessageText(chat,rep,shh, parse, dis, disn, reply_markup)
 end
+
+function youtube_api_url(url_link)
+local url = io.popen('curl -s "https://moh-yen.org/api/youtube.php?url='..url_link..'"'):read('*a')
+local json = JSON.decode(url)
+local link = json.url
+local title = json.title
+local title = title:gsub("/","-") 
+local title = title:gsub("\n","-") 
+local title = title:gsub("|","-") 
+local title = title:gsub("'","-") 
+local title = title:gsub('"',"-") 
+return  title
+end
+
 function send(chat,rep,text,parse,dis,clear,disn,back,markup)
 sh = tostring(text)
 if Redis:get(black..'rmzsource') then
@@ -17894,18 +17908,7 @@ end
 if data.The_Controller == 1 or data.The_Controller == 2 or data.The_Controller == 3 or data.The_Controller == 44 or data.The_Controller == 4 or data.The_Controller == 5 or data.The_Controller == 6 or data.The_Controller == 7 or data.The_Controller == 8 or data.The_Controller == 9 then
 data.Special = true
 end
-function youtube_api_url(url_link)
-local url = io.popen('curl -s "https://moh-yen.org/api/youtube.php?url='..url_link..'"'):read('*a')
-local json = JSON.decode(url)
-local link = json.url
-local title = json.title
-local title = title:gsub("/","-") 
-local title = title:gsub("\n","-") 
-local title = title:gsub("|","-") 
-local title = title:gsub("'","-") 
-local title = title:gsub('"',"-") 
-return  title
-end
+
 if Text and Text:match('(%d+)/dl(.*)') then
 local xd = {Text:match('(%d+)/dl(.*)')}
 local UserId = xd[1]
