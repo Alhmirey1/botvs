@@ -17908,7 +17908,7 @@ end
 if data.The_Controller == 1 or data.The_Controller == 2 or data.The_Controller == 3 or data.The_Controller == 44 or data.The_Controller == 4 or data.The_Controller == 5 or data.The_Controller == 6 or data.The_Controller == 7 or data.The_Controller == 8 or data.The_Controller == 9 then
 data.Special = true
 end
-
+if text then
 if text:match("^ت (.*)$") then
 local id = text:match("^ت (.*)$")
 local title = youtube_api_url(id)
