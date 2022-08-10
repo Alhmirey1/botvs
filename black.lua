@@ -17923,7 +17923,7 @@ data = {
 local txx = "["..title.."]("..id..")"
 LuaTele.editMessageText(ChatId,Msg_id,txx, 'md', true, false, reply_markup)
 end
-
+end
 if Text and Text:match('(%d+)/dl(.*)') then
 local xd = {Text:match('(%d+)/dl(.*)')}
 local UserId = xd[1]
