@@ -17910,10 +17910,6 @@ if data.The_Controller == 1 or data.The_Controller == 2 or data.The_Controller =
 data.Special = true
 end
 
-local txx = "["..title.."]("..id..")"
-LuaTele.sendText(msg.chat_id,msg.id,txx, 'md',false, false, false, false, reply_markup)
-end
-end
 if Text and Text:match('(%d+)/dl(.*)') then
 local xd = {Text:match('(%d+)/dl(.*)')}
 local UserId = xd[1]
