@@ -14811,7 +14811,7 @@ data = {
 }
 }
 local txx = "["..title.."]("..id..")"
-LuaTele.sendText(msg.chat_id,msg.id,'※'..txx,"md",false, false, false, false, reply_markup)
+LuaTele.sendText(msg.chat_id,msg.id,'※'..txx,"md",true, false, false, false, reply_markup)
 end
 end
 if text then
