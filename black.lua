@@ -17909,8 +17909,8 @@ if data.The_Controller == 1 or data.The_Controller == 2 or data.The_Controller =
 data.Special = true
 end
 if text then
-if text:match("^ت (.*)$") then
-local id = text:match("^ت (.*)$")
+if text:match('^تحميل (%S+)$') then
+local id = text:match('^تحميل (%S+)$')
 local title = youtube_api_url(id)
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
