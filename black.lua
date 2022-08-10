@@ -17931,20 +17931,13 @@ local xd = {Text:match('(%d+)sound/(.*)')}
 local UserId = xd[1]
 local id = xd[2]
 if tonumber(IdUser) == tonumber(UserId) then
+local title = youtube_api_url(id)
 local u = LuaTele.getUser(IdUser)
 LuaTele.answerCallbackQuery(data.id, "※ انتظر يتم التحميل ", true)
-local url = io.popen('curl -s "https://moh-yen.org/api/youtube.php?url='..id..'"'):read('*a')
-local json = JSON.decode(url)
-local link = json.url
-local title = json.title
-local title = title:gsub("/","-") 
-local title = title:gsub("\n","-") 
-local title = title:gsub("|","-") 
-local title = title:gsub("'","-") 
-local title = title:gsub('"',"-") 
+
 LuaTele.deleteMessages(ChatId,{[1]= Msg_id})
-os.execute("yt-dlp "..link.." -f 251 -o '"..title..".mp3'")
-LuaTele.sendAudio(ChatId,0,'./'..title..'.mp3',"※ ["..title.."]("..link..")\n※ حسب طلب ["..u.first_name.."](tg://user?id="..IdUser..")","md",nil,title,"alhmirey") 
+os.execute("yt-dlp "..id.." -f 251 -o '"..title..".mp3'")
+LuaTele.sendAudio(ChatId,0,'./'..title..'.mp3',"※ ["..title.."]("..id..")\n※ حسب طلب ["..u.first_name.."](tg://user?id="..IdUser..")","md",nil,title,"alhmirey") 
 sleep(2)
 os.remove(""..title..".mp3")
 else
@@ -17958,18 +17951,10 @@ local id = xd[2]
 if tonumber(IdUser) == tonumber(UserId) then
 local u = LuaTele.getUser(IdUser)
 LuaTele.answerCallbackQuery(data.id, "※ انتظر يتم التحميل ", true)
-local url = io.popen('curl -s "https://xnxx.fastbots.ml/infovd.php?id='..id..'"'):read('*a')
-local json = JSON.decode(url)
-local link = "https://www.youtube.com/watch?v="..id
-local title = json.title
-local title = title:gsub("/","-") 
-local title = title:gsub("\n","-") 
-local title = title:gsub("|","-") 
-local title = title:gsub("'","-") 
-local title = title:gsub('"',"-") 
+local title = youtube_api_url(id)
 LuaTele.deleteMessages(ChatId,{[1]= Msg_id})
-os.execute("yt-dlp "..link.." -f 18 -o '"..title..".mp4'")
-LuaTele.sendVideo(ChatId,0,'./'..title..'.mp4',"※ ["..title.."]("..link..")\n※ حسب طلب ["..u.first_name.."](tg://user?id="..IdUser..")","md") 
+os.execute("yt-dlp "..id.." -f 18 -o '"..title..".mp4'")
+LuaTele.sendVideo(ChatId,0,'./'..title..'.mp4',"※ ["..title.."]("..id..")\n※ حسب طلب ["..u.first_name.."](tg://user?id="..IdUser..")","md") 
 sleep(4)
 os.remove(""..title..".mp4")
 else
