@@ -14799,8 +14799,8 @@ end
 LuaTele.sendText(msg_chat_id,msg_id,txx)
 end
 if text then
-if text:match("^تحميل (.*)$") then
-local search = text:match("^تحميل (.*)$")
+if text:match("^بحث (.*)$") then
+local search = text:match("^بحث (.*)$")
 local json = json:decode(http.request("https://moh-yen.org/api/youtube.php?search="..URL.escape(search)..""))
 local datar = {data = {{text = "❍ 𝑆𝑂𝑈𝑅𝐶𝐸 𝐵𝐿𝐴𝐶𝐾 ❍" , url = 'https://t.me/J_F_A_I'}}}
 for i = 1,5 do
@@ -17908,7 +17908,6 @@ end
 if data.The_Controller == 1 or data.The_Controller == 2 or data.The_Controller == 3 or data.The_Controller == 44 or data.The_Controller == 4 or data.The_Controller == 5 or data.The_Controller == 6 or data.The_Controller == 7 or data.The_Controller == 8 or data.The_Controller == 9 then
 data.Special = true
 end
-
 if Text and Text:match('(%d+)/dl(.*)') then
 local xd = {Text:match('(%d+)/dl(.*)')}
 local UserId = xd[1]
