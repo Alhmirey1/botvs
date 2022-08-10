@@ -14798,7 +14798,22 @@ txx = txx..k.." - "..v.." ➢➢ "..cmdd.."\n"
 end
 LuaTele.sendText(msg_chat_id,msg_id,txx)
 end
-
+if text then
+if text:match("^تحميل (.*)$") then
+local id = text:match("^تحميل (.*)$")
+local title = youtube_api_url(id)
+local reply_markup = LuaTele.replyMarkup{
+type = 'inline',
+data = {
+{
+{text = 'تحميل صوت', data = msg.sender.user_id..'sound/'..id}, {text = 'تحميل فيديو', data = msg.sender.user_id..'video/'..id}, 
+},
+}
+}
+local txx = "["..title.."]("..id..")"
+LuaTele.sendText(msg.chat_id,msg.id,'※'..txx,"md",false, false, false, false, reply_markup)
+end
+end
 if text then
 if text:match("^بحث (.*)$") then
 local search = text:match("^بحث (.*)$")
