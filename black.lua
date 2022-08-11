@@ -16973,6 +16973,63 @@ if text and text:match("^تعين عدد الاعضاء (%d+)$") then
 if not msg.Devss then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(2)..' * ',"md",true)  
 end
+
+if Text and Text:match("(%d+)/toop1") then
+local UserId = Text:match("(%d+)/toop1")
+if tonumber(IdUser) == tonumber(UserId) then
+local reply_markup = LuaTele.replyMarkup{
+type = "inline",
+data = {
+{
+{text = 'قناة السورس', url='https://t.me/trprogram'},
+},
+}
+}
+
+local bank_users = Redis:smembers(black.."booob")
+if #bank_users == 0 then
+return send(msg.chat_id,msg.id,"•  لا يوجد حسابات في البنك","md",true)
+end
+local bank_users = Redis:smembers(black.."booob")
+top_mony = "توب اغنى 10 شخص في البوت :\n\n"
+mony_list = {}
+for k,v in pairs(bank_users) do
+local mony = Redis:get(black.."boob"..v)
+table.insert(mony_list, {tonumber(mony) , v})
+end
+table.sort(mony_list, function(a, b) return a[1] > b[1] end)
+num = 1
+emoji ={ 
+"🥇" ,
+"🥈",
+"🥉",
+"4",
+"5",
+"6",
+"7",
+"8",
+"9",
+"10"
+}
+for k,v in pairs(mony_list) do
+if num <= 10 then
+local user_name = LuaTele.getUser(v[2]).first_name
+if user_name then
+nname = user_name
+else
+nname = ""
+end
+local user_tag = '['..nname..'](tg://user?id='..v[2]..')'
+local mony = v[1]
+local emo = emoji[k]
+num = num + 1
+top_mony = top_mony.."*"..emo.."*) *"..mony.."* 💰 l ["..nname.."] \n"
+end
+end
+LuaTele.editMessageText(ChatId,Msg_id,top_mony, "md", true, false, reply_markup)
+end
+end
+
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
