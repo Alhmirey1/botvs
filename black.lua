@@ -21172,7 +21172,7 @@ end
 end
 end
 
- Text and Text:match("(%d+)/toop1") then
+if Text and Text:match("(%d+)/toop1") then
 local UserId = Text:match("(%d+)/toop1")
 local bank_users = Redis:smembers(black.."booob")
 if #bank_users == 0 then
