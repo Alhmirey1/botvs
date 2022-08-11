@@ -16976,21 +16976,10 @@ end
 
 if Text and Text:match("(%d+)/toop1") then
 local UserId = Text:match("(%d+)/toop1")
-if tonumber(IdUser) == tonumber(UserId) then
-local reply_markup = LuaTele.replyMarkup{
-type = "inline",
-data = {
-{
-{text = 'قناة السورس', url='https://t.me/trprogram'},
-},
-}
-}
-
 local bank_users = Redis:smembers(black.."booob")
 if #bank_users == 0 then
 return send(msg.chat_id,msg.id,"•  لا يوجد حسابات في البنك","md",true)
 end
-local bank_users = Redis:smembers(black.."booob")
 top_mony = "توب اغنى 10 شخص في البوت :\n\n"
 mony_list = {}
 for k,v in pairs(bank_users) do
@@ -17026,8 +17015,7 @@ num = num + 1
 top_mony = top_mony.."*"..emo.."*) *"..mony.."* 💰 l ["..nname.."] \n"
 end
 end
-LuaTele.editMessageText(ChatId,Msg_id,top_mony, "md", true, false, reply_markup)
-end
+return send(msg.chat_id,msg.id,top_mony,"md")
 end
 
 if ChannelJoin(msg) == false then
