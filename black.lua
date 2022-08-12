@@ -16974,7 +16974,6 @@ if not msg.Devss then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(2)..' * ',"md",true)  
 end
 
-if
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
