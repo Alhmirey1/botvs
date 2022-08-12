@@ -13793,10 +13793,10 @@ data = {
 },
 }
 }
-LuaTele.sendText(msg.chat_id,msg.id, '
+LuaTele.sendText(msg.chat_id,msg.id,[[
 - ‌‌‏أهلاً بك عزيزي في قائمة الاوامر :
 • اختر نوع التوب من الازرار
-',"md",false, false, false, false, reply_markup)
+]],"md",false, false, false, false, reply_markup)
 end
 
 
