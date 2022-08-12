@@ -13907,7 +13907,7 @@ for k,v in pairs(bank_users) do
 local mony = Redis:get(black.."boob"..v)
 table.insert(mony_list, {tonumber(mony) , v})
 end
-table.sort(mony_list, function(a, b) return a[1] >e b[1] end)
+table.sort(mony_list, function(a, b) return a[1] > b[1] end)
 num = 1
 emoji ={ 
 "🥇" ,
