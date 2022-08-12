@@ -13936,7 +13936,7 @@ num = num + 1
 top_mony = top_mony.."*"..emo.."*) *"..mony.."* 💰 l ["..nname.."] \n"
 end
 end
-edit(ChatId,Msg_id,top_mony, "md", true, false, reply_markup)
+LuaTele.editMessageText(ChatId,Msg_id,top_mony, "md", true, false, reply_markup)
 end
 end
 if text == 'بخشيش' or text == 'بقشيش' then
