@@ -13786,10 +13786,10 @@ local reply_markup = LuaTele.replyMarkup{
 type = "inline",
 data = {
 {
-{text = " توب الفلوس ", data = msg.sender.user_id.."toop1/"},{text = " توب الحراميه ", data = msg.sender.user_id.."toop2/"},  
+{text = " توب الفلوس ", data = msg.sender.user_id.."/toop1"},{text = " توب الحراميه ", data = msg.sender.user_id.."/toop2"},  
 },
 {
-{text = "توب الزوجات", data = msg.sender.user_id.."toop5/"},  
+{text = "توب الزوجات", data = msg.sender.user_id.."/toop5"},  
 },
 }
 }
@@ -13799,7 +13799,7 @@ return LuaTele.sendText(msg_chat_id,msg_id, [[
 ]],"md",false, false, false, false, reply_markup)
 end
 
-if Text and Text:match('(%d+)toop1/') then
+if text == "توب فلوس" or text == "توب الفلوس" then
 local bank_users = Redis:smembers(black.."booob")
 if #bank_users == 0 then
 return send(msg.chat_id,msg.id,"•  لا يوجد حسابات في البنك","md",true)
