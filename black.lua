@@ -13793,12 +13793,11 @@ data = {
 },
 }
 }
-LuaTele.sendText(msg.chat_id,msg.id,[[
+return LuaTele.sendText(msg.chat_id,msg.id, [[
 - ‌‌‏أهلاً بك عزيزي في قائمة الاوامر :
 • اختر نوع التوب من الازرار
 ]],"md",false, false, false, false, reply_markup)
 end
-
 
 if text == "توب فلوس" or text == "توب الفلوس" then
 local bank_users = Redis:smembers(black.."booob")
