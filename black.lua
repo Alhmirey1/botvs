@@ -13786,18 +13786,19 @@ local reply_markup = LuaTele.replyMarkup{
 type = "inline",
 data = {
 {
-{text = " توب الفلوس ", data = msg.sender.user_id.."/toop1"},{text = " توب الحراميه ", data = msg.sender.user_id.."/toop2"},  
+{text = " توب الفلوس ", data = msg.sender.user_id..'/toop1'},{text = " توب الحراميه ", data = msg.sender.user_id..'/toop2'},  
 },
 {
-{text = "توب الزوجات", data = msg.sender.user_id.."/toop5"},  
+{text = "توب الزوجات", data = msg.sender.user_id..'/toop5'},  
 },
 }
 }
-return LuaTele.sendText(msg_chat_id,msg_id, [[
+LuaTele.sendText(msg.chat_id,msg.id, '
 - ‌‌‏أهلاً بك عزيزي في قائمة الاوامر :
 • اختر نوع التوب من الازرار
-]],"md",false, false, false, false, reply_markup)
+',"md",false, false, false, false, reply_markup)
 end
+
 
 if text == "توب فلوس" or text == "توب الفلوس" then
 local bank_users = Redis:smembers(black.."booob")
