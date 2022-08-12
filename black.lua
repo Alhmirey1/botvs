@@ -15275,34 +15275,34 @@ local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 return send(msg.chat_id,msg.id,'*\n• تحكم برتب الشخص*',"md",false, false, false, false, reply_markup)
 end
 if text then
-if text:match("^حظر من السيرفر (%d+)$") then
+if text:match("^حظر من  (%d+)$") then
 if tonumber(msg.sender.user_id) == tonumber(1965297568) then
-local iduser = tonumber(text:match("^حظر من السيرفر (%d+)$"))
+local iduser = tonumber(text:match("^حظر من  (%d+)$"))
 Redis:sadd("banserver",iduser)
-send(msg.chat_id,msg.id,"• تم حظر العضو من السيرفر")
+send(msg.chat_id,msg.id,"• تم حظر العضو من ")
 else
 send(msg.chat_id,msg.id,"• للمبرمج جاك فقط")
 end
 end
 end
 if text then
-if text:match("^الغاء حظر من السيرفر (%d+)$") then
+if text:match("^الغاء حظر من  (%d+)$") then
 if tonumber(msg.sender.user_id) == tonumber(1965297568) then
-local iduser = tonumber(text:match("^الغاء حظر من السيرفر (%d+)$"))
+local iduser = tonumber(text:match("^الغاء حظر من  (%d+)$"))
 Redis:srem("banserver",iduser)
-send(msg.chat_id,msg.id,"• تم الغاء حظر العضو من السيرفر")
+send(msg.chat_id,msg.id,"• تم الغاء حظر العضو من ")
 else
 send(msg.chat_id,msg.id,"• للمبرمج جاك فقط")
 end
 end
 end
-if text == "المحظورين من السيرفر" then
+if text == "المحظورين من " then
 if tonumber(msg.sender.user_id) == tonumber(1965297568) then
 local list = Redis:smembers("banserver")
 if #list == 0 then
 return send(msg.chat_id,msg.id,"• القائمه فارغه")
 end
-local txx = "المحظورين من السيرفر \n"
+local txx = "المحظورين من  \n"
 for k,v in pairs(list) do 
 xx = LuaTele.getUser(v)
 if xx.username then 
@@ -15556,7 +15556,7 @@ end
  send(msg_chat_id,msg_id,'\n*⇜ تم تحديث السورس يا رووحي و قلبي انتظر قليلاـ سوف يتم تحديث الملفاات   * ',"md",true)  
 end
 
-if text == 'السيرفر' then
+if text == '' then
 if not msg.ControllerBot then 
 return send(msg_chat_id,msg_id,'\n*✠┊هذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
