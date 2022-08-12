@@ -13793,7 +13793,7 @@ data = {
 },
 }
 }
-return LuaTele.sendText(msg.chat_id,msg.id, [[
+return send(msg_chat_id,msg_id, [[
 - ‌‌‏أهلاً بك عزيزي في قائمة الاوامر :
 • اختر نوع التوب من الازرار
 ]],"md",false, false, false, false, reply_markup)
@@ -13936,7 +13936,7 @@ num = num + 1
 top_mony = top_mony.."*"..emo.."*) *"..mony.."* 💰 l ["..nname.."] \n"
 end
 end
-LuaTele.editMessageText(ChatId,Msg_id,top_mony, "md", true, false, reply_markup)
+edit(ChatId,Msg_id,top_mony, "md", true, false, reply_markup)
 end
 end
 if text == 'بخشيش' or text == 'بقشيش' then
