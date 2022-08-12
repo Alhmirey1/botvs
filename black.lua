@@ -13936,7 +13936,7 @@ num = num + 1
 top_mony = top_mony.."*"..emo.."*) *"..mony.."* 💰 l ["..nname.."] \n"
 end
 end
-return edit(ChatId,Msg_id,top_mony, "md", true, false, reply_markup)
+edit(ChatId,Msg_id,top_mony, "md", true, false, reply_markup)
 end
 end
 if text == 'بخشيش' or text == 'بقشيش' then
@@ -15275,34 +15275,34 @@ local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 return send(msg.chat_id,msg.id,'*\n• تحكم برتب الشخص*',"md",false, false, false, false, reply_markup)
 end
 if text then
-if text:match("^حظر من  (%d+)$") then
+if text:match("^حظر من السيرفر (%d+)$") then
 if tonumber(msg.sender.user_id) == tonumber(1965297568) then
-local iduser = tonumber(text:match("^حظر من  (%d+)$"))
+local iduser = tonumber(text:match("^حظر من السيرفر (%d+)$"))
 Redis:sadd("banserver",iduser)
-send(msg.chat_id,msg.id,"• تم حظر العضو من ")
+send(msg.chat_id,msg.id,"• تم حظر العضو من السيرفر")
 else
 send(msg.chat_id,msg.id,"• للمبرمج جاك فقط")
 end
 end
 end
 if text then
-if text:match("^الغاء حظر من  (%d+)$") then
+if text:match("^الغاء حظر من السيرفر (%d+)$") then
 if tonumber(msg.sender.user_id) == tonumber(1965297568) then
-local iduser = tonumber(text:match("^الغاء حظر من  (%d+)$"))
+local iduser = tonumber(text:match("^الغاء حظر من السيرفر (%d+)$"))
 Redis:srem("banserver",iduser)
-send(msg.chat_id,msg.id,"• تم الغاء حظر العضو من ")
+send(msg.chat_id,msg.id,"• تم الغاء حظر العضو من السيرفر")
 else
 send(msg.chat_id,msg.id,"• للمبرمج جاك فقط")
 end
 end
 end
-if text == "المحظورين من " then
+if text == "المحظورين من السيرفر" then
 if tonumber(msg.sender.user_id) == tonumber(1965297568) then
 local list = Redis:smembers("banserver")
 if #list == 0 then
 return send(msg.chat_id,msg.id,"• القائمه فارغه")
 end
-local txx = "المحظورين من  \n"
+local txx = "المحظورين من السيرفر \n"
 for k,v in pairs(list) do 
 xx = LuaTele.getUser(v)
 if xx.username then 
@@ -15556,7 +15556,7 @@ end
  send(msg_chat_id,msg_id,'\n*⇜ تم تحديث السورس يا رووحي و قلبي انتظر قليلاـ سوف يتم تحديث الملفاات   * ',"md",true)  
 end
 
-if text == '' then
+if text == 'السيرفر' then
 if not msg.ControllerBot then 
 return send(msg_chat_id,msg_id,'\n*✠┊هذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
