@@ -15,13 +15,13 @@ luatele = require 'luatele'
 local FileInformation = io.open("./Information.lua","r")
 if not FileInformation then
 if not Redis:get(SshId.."Info:Redis:Token") then
-io.write('\27[1;31mارسل لي توكن البوت الان \nSend Me a Bot Token Now ↡\n\27[0;39;49m')
+io.write('\27[1;31mارسل لي توكن ال الان \nSend Me a Bot Token Now ↡\n\27[0;39;49m')
 local TokenBot = io.read()
 if TokenBot and TokenBot:match('(%d+):(.*)') then
 local url , res = https.request('https://api.telegram.org/bot'..TokenBot..'/getMe')
 local Json_Info = JSON.decode(url)
 if res ~= 200 then
-print('\27[1;34mعذرا توكن البوت خطأ تحقق منه وارسله مره اخره \nBot Token is Wrong\n')
+print('\27[1;34mعذرا توكن ال خطأ تحقق منه وارسله مره اخره \nBot Token is Wrong\n')
 else
 io.write('\27[1;34mتم حفظ التوكن بنجاح \nThe token been saved successfully \n\27[0;39;49m')
 TheTokenBot = TokenBot:match("(%d+)")
@@ -30,7 +30,7 @@ Redis:set(SshId.."Info:Redis:Token",TokenBot)
 Redis:set(SshId.."Info:Redis:Token:User",Json_Info.result.username)
 end 
 else
-print('\27[1;34mلم يتم حفظ التوكن جرب مره اخره \nToken not saved, try again')
+print('\27[1;34mلم يتم حفظ التوكن جر مره اخره \nToken not saved, try again')
 end 
 os.execute('lua black.lua')
 end
@@ -339,7 +339,7 @@ Status = 'مطور السورس'
 elseif UserId == Sudo_Id then  
 Status = 'المطور الاساسي'
 elseif UserId == black then
-Status = 'البوت'
+Status = 'ال'
 elseif Devss then
 Status = Redis:get(black.."Devss:Groups"..ChatId) or 'المطور الثانوي'
 elseif Dev then
@@ -863,7 +863,7 @@ data = {
 {text = '- ارسال الرسائل : .'..messges, data = UserId.. '/messges'}, 
 },
 {
-{text = '- اضافه البوتات : '..other, data = UserId.. '/other'}, 
+{text = '- اضافه الات : '..other, data = UserId.. '/other'}, 
 },
 {
 {text = '- ارسال استفتاء : '..polls, data = UserId.. '/polls'}, 
@@ -1371,7 +1371,7 @@ print(v)
 if v == tonumber(black) then
 local N = (Redis:get(black.."Name:Bot") or "بلاك")
 photo = LuaTele.getUserProfilePhotos(black)
-local TextBot = '*❍ انا بوت اسمي '..N..'\n❍ وظيفتي حمايه المجموعة من السبام والتفليش الخ....\n❍ لتفعيل البوت قم اضافته للمجموعتك وقم برفعه مشرف واكتب تفعيل\n*'
+local TextBot = '*❍ انا  اسمي '..N..'\n❍ وظيفتي حمايه المجموعة من السبام والتفليش الخ....\n❍ لتفعيل ال قم اضافته للمجموعتك وقم برفعه مشرف واكتب تفعيل\n*'
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
@@ -2253,7 +2253,7 @@ send(v,0,text,"html",true)
 Redis:set(black.."PinMsegees:"..v,text)
 end
 end
-send(msg_chat_id,msg_id,"❍ تمت الاذاعه الى *- "..#list.." * مجموعه في البوت ","md",true)      
+send(msg_chat_id,msg_id,"❍ تمت الاذاعه الى *- "..#list.." * مجموعه في ال ","md",true)      
 Redis:del(black.."Broadcasting:Groups:Pin" .. msg_chat_id .. ":" .. msg.sender.user_id) 
 return false
 end
@@ -2264,7 +2264,7 @@ return send(msg_chat_id,msg_id, "\n❍ تم الغاء الاذاعه بالتو
 end 
 if msg.forward_info then 
 local list = Redis:smembers(black.."Num:User:Pv") 
-send(msg_chat_id,msg_id,"❍ تم التوجيه الى *- "..#list.." * مشترك ف البوت ","md",true)      
+send(msg_chat_id,msg_id,"❍ تم التوجيه الى *- "..#list.." * مشترك ف ال ","md",true)      
 for k,v in pairs(list) do  
 LuaTele.forwardMessages(v, msg_chat_id, msg_id,0,0,true,false,false)
 end   
@@ -2322,7 +2322,7 @@ for k,v in pairs(list) do
 send(v,0,text,"html",true)  
 end
 end
-send(msg_chat_id,msg_id,"❍ تمت الاذاعه الى *- "..#list.." * عضو في البوت ","md",true)      
+send(msg_chat_id,msg_id,"❍ تمت الاذاعه الى *- "..#list.." * عضو في ال ","md",true)      
 Redis:del(black.."Broadcasting:Users" .. msg_chat_id .. ":" .. msg.sender.user_id) 
 return false
 end
@@ -2376,7 +2376,7 @@ for k,v in pairs(list) do
 send(v,0, text,"html",true)  
 end
 end
-send(msg_chat_id,msg_id,"❍ تمت الاذاعه الى *- "..#list.." * جروب في البوت ","md",true)      
+send(msg_chat_id,msg_id,"❍ تمت الاذاعه الى *- "..#list.." * جروب في ال ","md",true)      
 Redis:del(black.."Broadcasting:Groups" .. msg_chat_id .. ":" .. msg.sender.user_id) 
 return false
 end
@@ -2390,7 +2390,7 @@ local d = UserInfo.id
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
 LuaTele.deleteMessages(msg.chat_id,{[1]= msg_id})
-send(msg.chat_id,0,'❍ عذا يا ['..n..']('..d..') \n❍ عليك الاشتراك في قناه البوت للتمكن من التحدث هنا\n',"md",false, false, false, false, reply_markup)
+send(msg.chat_id,0,'❍ عذا يا ['..n..']('..d..') \n❍ عليك الاشتراك في قناه ال للتمكن من التحدث هنا\n',"md",false, false, false, false, reply_markup)
 return false 
 end 
 end
@@ -2401,7 +2401,7 @@ return send(msg_chat_id,msg_id, "\n❍ تم الغاء الاذاعه بالتو
 end 
 if msg.forward_info then 
 local list = Redis:smembers(black.."ChekBotAdd")   
-send(msg_chat_id,msg_id,"❍ تم التوجيه الى *- "..#list.." * جروب في البوت ","md",true)      
+send(msg_chat_id,msg_id,"❍ تم التوجيه الى *- "..#list.." * جروب في ال ","md",true)      
 for k,v in pairs(list) do  
 LuaTele.forwardMessages(v, msg_chat_id, msg_id,0,0,true,false,false)
 end   
@@ -2441,11 +2441,11 @@ end
 if Redis:get(black.."Change:Name:Bot"..msg.sender.user_id) then 
 if text == "الغاء" or text == 'الغاء الامر ❍' then   
 Redis:del(black.."Change:Name:Bot"..msg.sender.user_id) 
-return send(msg_chat_id,msg_id, "\n❍ تم الغاء امر تغيير اسم البوت","md",true)  
+return send(msg_chat_id,msg_id, "\n❍ تم الغاء امر تغيير اسم ال","md",true)  
 end 
 Redis:del(black.."Change:Name:Bot"..msg.sender.user_id) 
 Redis:set(black.."Name:Bot",text) 
-return send(msg_chat_id,msg_id, "❍ تم تغيير اسم البوت الى - "..text,"md",true)    
+return send(msg_chat_id,msg_id, "❍ تم تغيير اسم ال الى - "..text,"md",true)    
 end 
 if Redis:get(black.."Change:Start:Bot"..msg.sender.user_id) then 
 if text == "الغاء" or text == 'الغاء الامر ❍' then   
@@ -2576,7 +2576,7 @@ Redis:set(black.."chfalse",ch)
 Redis:del(black.."ch:admin")
 Redis:set(black.."ch:admin",data.result.invite_link)
 else
-send(msg_chat_id,msg_id,'❍ المعرف خطأ او البوت ليس مشرف في القناه ',"md",true)  
+send(msg_chat_id,msg_id,'❍ المعرف خطأ او ال ليس مشرف في القناه ',"md",true)  
 end
 end
 if Redis:get(black.."ch:addd"..msg.sender.user_id) == "on" then
@@ -2591,7 +2591,7 @@ Redis:set(black.."chfalse",ch)
 Redis:del(black.."ch:admin")
 Redis:set(black.."ch:admin",data.result.invite_link)
 else
-send(msg_chat_id,msg_id,'❍ المعرف خطأ او البوت ليس مشرف في القناه ',"md",true)  
+send(msg_chat_id,msg_id,'❍ المعرف خطأ او ال ليس مشرف في القناه ',"md",true)  
 end
 end
 if text == "تفعيل الاشتراك الاجباري" then
@@ -2617,21 +2617,21 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 if Message_Reply.content.document then
 local File_Id = Message_Reply.content.document.document.remote.id
 local Name_File = Message_Reply.content.document.file_name
 if Name_File ~= UserBot..'.json' then
-return send(msg_chat_id,msg_id,'❍ عذرا هاذا الملف غير مطابق مع البوت يرجى جلب النسخه الحقيقيه')
+return send(msg_chat_id,msg_id,'❍ عذرا هاذا الملف غير مطابق مع ال يرجى جلب النسخه الحقيقيه')
 end -- end Namefile
 local File = json:decode(https.request('https://api.telegram.org/bot'..Token..'/getfile?file_id='..File_Id)) 
 local download_ = download('https://api.telegram.org/file/bot'..Token..'/'..File.result.file_path,''..Name_File) 
 local Get_Info = io.open("./"..UserBot..".json","r"):read('*a')
 local FilesJson = JSON.decode(Get_Info)
 if tonumber(black) ~= tonumber(FilesJson.BotId) then
-return send(msg_chat_id,msg_id,'❍ عذرا هاذا الملف غير مطابق مع البوت يرجى جلب النسخه الحقيقيه')
+return send(msg_chat_id,msg_id,'❍ عذرا هاذا الملف غير مطابق مع ال يرجى جلب النسخه الحقيقيه')
 end -- end botid
 send(msg_chat_id,msg_id,'❍جاري استرجاع المشتركين والجروبات ...')
 Y = 0
@@ -2669,7 +2669,7 @@ Redis:sadd(black.."Special:Group"..GroupId,v)
 end
 end 
 end
-return send(msg_chat_id,msg_id,'❍ تم استرجاع {'..X..'} جروب \n❍واسترجاع {'..Y..'} مشترك في البوت')
+return send(msg_chat_id,msg_id,'❍ تم استرجاع {'..X..'} جروب \n❍واسترجاع {'..Y..'} مشترك في ال')
 end
 end
 if text == 'رفع نسخه تشاكي' and msg.reply_to_message_id ~= 0 then
@@ -2681,7 +2681,7 @@ if Message_Reply.content.document then
 local File_Id = Message_Reply.content.document.document.remote.id
 local Name_File = Message_Reply.content.document.file_name
 if tonumber(Name_File:match('(%d+)')) ~= tonumber(black) then 
-return send(msg_chat_id,msg_id,'❍ عذرا هاذا الملف غير مطابق مع البوت يرجى جلب النسخه الحقيقيه')
+return send(msg_chat_id,msg_id,'❍ عذرا هاذا الملف غير مطابق مع ال يرجى جلب النسخه الحقيقيه')
 end -- end Namefile
 local File = json:decode(https.request('https://api.telegram.org/bot'..Token..'/getfile?file_id='..File_Id)) 
 local download_ = download('https://api.telegram.org/file/bot'..Token..'/'..File.result.file_path,''..Name_File) 
@@ -2709,7 +2709,7 @@ end;end
 end
 return send(msg_chat_id,msg_id,'❍ تم استرجاع المجموعات من نسخه تشاكي')
 else
-return send(msg_chat_id,msg_id,'❍الملف لا يدعم هاذا البوت')
+return send(msg_chat_id,msg_id,'❍الملف لا يدعم هاذا ال')
 end
 end
 end
@@ -2721,7 +2721,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."SendBcBot") 
 return send(msg_chat_id,msg_id,"❍ تم تعطيل الاذاعه ","md",true)
@@ -2733,7 +2733,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."SendBcBot",true) 
 return send(msg_chat_id,msg_id,"❍ تم تفعيل الاذاعه للمطورين ","md",true)
@@ -2745,7 +2745,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."LeftBot") 
 return send(msg_chat_id,msg_id,"❍ تم تعطيل المغادره ","md",true)
@@ -2757,7 +2757,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."LeftBot",true) 
 return send(msg_chat_id,msg_id,"❍ تم تفعيل المغادره للمطورين ","md",true)
@@ -2801,7 +2801,7 @@ if text == "الجروبات ❍" then
 if not msg.ControllerBot then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(1)..' * ',"md",true)  
 end
-local G = "جروبات البوت :\n"
+local G = "جروبات ال :\n"
 local list = Redis:smembers(black..'ChekBotAdd')  
 for k,v in pairs(list) do  
 local Get_Chat = LuaTele.getChat(v)
@@ -2830,7 +2830,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Groups = Redis:smembers(black..'ChekBotAdd')  
 local UsersBot = Redis:smembers(black..'Num:User:Pv')  
@@ -2928,10 +2928,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black..'Num:Add:Bot',text:match("تعين عدد الاعضاء (%d+)$") ) 
-send(msg_chat_id,msg_id,'*❍ تم تعيين عدد اعضاء تفعيل البوت اكثر من : '..text:match("تعين عدد الاعضاء (%d+)$")..' عضو *',"md",true)  
+send(msg_chat_id,msg_id,'*❍ تم تعيين عدد اعضاء تفعيل ال اكثر من : '..text:match("تعين عدد الاعضاء (%d+)$")..' عضو *',"md",true)  
 elseif text =='الاحصائيات' then 
 if not msg.ControllerBot then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(1)..' * ',"md",true)  
@@ -2939,9 +2939,9 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
-send(msg_chat_id,msg_id,'*❍عدد احصائيات البوت الكامله \nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n❍عدد المجموعات : '..(Redis:scard(black..'ChekBotAdd') or 0)..'\n❍عدد المشتركين : '..(Redis:scard(black..'Num:User:Pv') or 0)..'*',"md",true)  
+send(msg_chat_id,msg_id,'*❍عدد احصائيات ال الكامله \nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n❍عدد المجموعات : '..(Redis:scard(black..'ChekBotAdd') or 0)..'\n❍عدد المشتركين : '..(Redis:scard(black..'Num:User:Pv') or 0)..'*',"md",true)  
 end
 if text == 'تفعيل' and msg.Dev then
 if Redis:sismember(black..'ban:online',msg.chat_id) then
@@ -2951,7 +2951,7 @@ LuaTele.leaveChat(msg.chat_id)
 return false 
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local Get_Chat = LuaTele.getChat(msg_chat_id)
 local Info_Chats = LuaTele.getSupergroupFullInfo(msg_chat_id)
@@ -3001,7 +3001,7 @@ LuaTele.leaveChat(msg.chat_id)
 return false 
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local StatusMember = LuaTele.getChatMember(msg_chat_id,msg.sender.user_id).status.luatele
 if (StatusMember == "chatMemberStatusCreator") then
@@ -3015,7 +3015,7 @@ if AddedBot == false then
 return send(msg_chat_id,msg_id,"\n*❍ عذرا انته لست ادمن او مالك الجروب *","md",true)  
 end
 if not Redis:get(black.."BotFree") then
-return send(msg_chat_id,msg_id,"\n*❍الوضع الخدمي تم تعطيله من قبل مطور البوت *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍الوضع الخدمي تم تعطيله من قبل مطور ال *","md",true)  
 end
 local Get_Chat = LuaTele.getChat(msg_chat_id)
 local Info_Chats = LuaTele.getSupergroupFullInfo(msg_chat_id)
@@ -3095,7 +3095,7 @@ return false
 end
 Redis:sadd(black.."ChekBotAdd",msg_chat_id)
 local list = Redis:smembers(black.."ChekBotAdd")
-send(Sudo_Id,0,"*❍ تم تفعيل جروب تلقائيا عن طريق البوت*\n❍ اصبح عدد جروباتك *"..#list.."* مجموعه","md",true)
+send(Sudo_Id,0,"*❍ تم تفعيل جروب تلقائيا عن طريق ال*\n❍ اصبح عدد جروباتك *"..#list.."* مجموعه","md",true)
 end
 if chat_type(msg.chat_id) == "GroupBot" and Redis:sismember(black.."ChekBotAdd",msg_chat_id) then
 if text then
@@ -3153,7 +3153,7 @@ if text== 'مسح موسيقى' and msg.reply_to_message_id then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Devss then 
 return send(msg_chat_id,msg_id,'\n*• هذا الامر يخص { '..Controller_Num(2)..' }* ',"md",true)  
@@ -3169,7 +3169,7 @@ if text== 'اضف موسيقى' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Devss then 
 return send(msg_chat_id,msg_id,'\n*• هذا الامر يخص { '..Controller_Num(2)..' }* ',"md",true)  
@@ -3182,7 +3182,7 @@ if text== ("قائمه الموسيقى") then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Devss then 
 return send(msg_chat_id,msg_id,'\n*• هذا الامر يخص { '..Controller_Num(2)..' }* ',"md",true)  
@@ -3200,7 +3200,7 @@ if text== ("مسح قائمه الموسيقى") then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Devss then 
 return send(msg_chat_id,msg_id,'\n*• هذا الامر يخص { '..Controller_Num(2)..' }* ',"md",true)  
@@ -3220,7 +3220,7 @@ if text== 'موسيقى' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."audio:Games:Bot")
 if #list == 0 then
@@ -3282,7 +3282,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local UserInfo = LuaTele.getUser(msg.sender.user_id)
 local Name_User = UserInfo.first_name
@@ -3388,7 +3388,7 @@ if text and text:match('^كشف (%d+)$') then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local UserId = text:match('^كشف (%d+)$')
 local UserInfo = LuaTele.getUser(UserId)
@@ -3423,7 +3423,7 @@ if text and text:match('^كشف (%d+)$') then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local UserId = text:match('^كشف (%d+)$')
 local UserInfo = LuaTele.getUser(UserId)
@@ -3459,7 +3459,7 @@ if text:match('^ايدي @(%S+)$') or text:match('^كشف @(%S+)$') then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local UserName = text:match('^ايدي @(%S+)$') or text:match('^كشف @(%S+)$')
 local UserId_Info = LuaTele.searchPublicChat(UserName)
@@ -3470,7 +3470,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 local U = LuaTele.getUser(UserId_Info.id)
 local Name_User = U.first_name 
@@ -3509,7 +3509,7 @@ if text == 'رتبتي' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 return send(msg_chat_id,msg_id,'\n❍ رتبتك هي : '..msg.Name_Controller,"md",true)  
 end
@@ -3517,7 +3517,7 @@ if text == 'معلوماتي' or text == 'موقعي' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local UserInfo = LuaTele.getUser(msg.sender.user_id)
 --
@@ -3572,18 +3572,18 @@ return send(msg_chat_id,msg_id,
 '\n❍ البايو : '..getbio(UserId)..
 '*'..(PermissionsUser or '') ,"md",true) 
 end
-if text == 'كشف البوت' then 
+if text == 'كشف ال' then 
 if not msg.Manger then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(6)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local StatusMember = LuaTele.getChatMember(msg_chat_id,black).status.luatele
 if (StatusMember ~= "chatMemberStatusAdministrator") then
-return send(msg_chat_id,msg_id,'❍ البوت عضو في الجروب ',"md",true) 
+return send(msg_chat_id,msg_id,'❍ ال عضو في الجروب ',"md",true) 
 end
 local GetMemberStatus = LuaTele.getChatMember(msg_chat_id,black).status
 if GetMemberStatus.can_change_info then
@@ -3604,7 +3604,7 @@ end
 if GetMemberStatus.can_promote_members then
 promote = '❬ ✔️ ❭' else promote = '❬ ❌ ❭'
 end
-PermissionsUser = '*\n❍صلاحيات البوت في الجروب :\nــــــــــــــــــــــ❍ـــــــــــــــــــــ'..'\n❍تغيير المعلومات : '..change_info..'\n❍تثبيت الرسائل : '..pin_messages..'\n❍اضافه مستخدمين : '..invite_users..'\n❍مسح الرسائل : '..delete_messages..'\n❍حظر المستخدمين : '..restrict_members..'\n❍اضافه المشرفين : '..promote..'\n\n*'
+PermissionsUser = '*\n❍صلاحيات ال في الجروب :\nــــــــــــــــــــــ❍ـــــــــــــــــــــ'..'\n❍تغيير المعلومات : '..change_info..'\n❍تثبيت الرسائل : '..pin_messages..'\n❍اضافه مستخدمين : '..invite_users..'\n❍مسح الرسائل : '..delete_messages..'\n❍حظر المستخدمين : '..restrict_members..'\n❍اضافه المشرفين : '..promote..'\n\n*'
 return send(msg_chat_id,msg_id,PermissionsUser,"md",true) 
 end
 
@@ -3616,13 +3616,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).Delmsg == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حذف الرسائل* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حذف الرسائل* ',"md",true)  
 end
 if tonumber(NumMessage) > 1000 then
 return send(msg_chat_id,msg_id,'\n*❍ العدد اكثر من 1000 لا تستطيع الحذف',"md",true)  
@@ -3652,7 +3652,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName[2]:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if UserName[1] == "مطور ثانوي" then
 if not msg.ControllerBot then 
@@ -3661,7 +3661,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Devss:Groups",UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم تنزيله مطور ثانوي مسبقا ").Reply,"md",true)  
@@ -3677,7 +3677,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Dev:Groups",UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم تنزيله مطور مسبقا ").Reply,"md",true)  
@@ -3704,7 +3704,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Supcreator:Group"..msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم تنزيله منشئ اساسي مسبقا ").Reply,"md",true)  
@@ -3720,7 +3720,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Creator:Group"..msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم تنزيله من المنشئين مسبقا ").Reply,"md",true)  
@@ -3736,7 +3736,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Manger:Group"..msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم تنزيله من المدراء مسبقا ").Reply,"md",true)  
@@ -3752,7 +3752,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Admin:Group"..msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم تنزيله من الادمنيه مسبقا ").Reply,"md",true)  
@@ -3768,7 +3768,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Special:Group"..msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم تنزيله من المميزين مسبقا ").Reply,"md",true)  
@@ -3786,7 +3786,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if TextMsg == 'مطور ثانوي' then
 if not msg.ControllerBot then 
@@ -3795,7 +3795,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Devss:Groups",Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم تنزيله مطور ثانوي مسبقا ").Reply,"md",true)  
@@ -3811,7 +3811,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Dev:Groups",Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم تنزيله مطور مسبقا ").Reply,"md",true)  
@@ -3838,7 +3838,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Supcreator:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم تنزيله منشئ اساسي مسبقا ").Reply,"md",true)  
@@ -3854,7 +3854,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Creator:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم تنزيله من المنشئين مسبقا ").Reply,"md",true)  
@@ -3870,7 +3870,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Manger:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم تنزيله من المدراء مسبقا ").Reply,"md",true)  
@@ -3886,7 +3886,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Admin:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم تنزيله من الادمنيه مسبقا ").Reply,"md",true)  
@@ -3902,7 +3902,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Special:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم تنزيله من المميزين مسبقا ").Reply,"md",true)  
@@ -4005,7 +4005,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if UserId[1] == 'مطور ثانوي' then
 if not msg.ControllerBot then 
@@ -4014,7 +4014,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Devss:Groups",UserId) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId,"❍ تم تنزيله مطور ثانوي مسبقا ").Reply,"md",true)  
@@ -4030,7 +4030,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Dev:Groups",UserId) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId,"❍ تم تنزيله مطور مسبقا ").Reply,"md",true)  
@@ -4057,7 +4057,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Supcreator:Group"..msg_chat_id,UserId[2]) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId[2],"❍ تم تنزيله منشئ اساسي مسبقا ").Reply,"md",true)  
@@ -4073,7 +4073,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Creator:Group"..msg_chat_id,UserId[2]) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId[2],"❍ تم تنزيله من المنشئين مسبقا ").Reply,"md",true)  
@@ -4089,7 +4089,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Manger:Group"..msg_chat_id,UserId[2]) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId[2],"❍ تم تنزيله من المدراء مسبقا ").Reply,"md",true)  
@@ -4105,7 +4105,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Admin:Group"..msg_chat_id,UserId[2]) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId[2],"❍ تم تنزيله من الادمنيه مسبقا ").Reply,"md",true)  
@@ -4121,7 +4121,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:sismember(black.."Special:Group"..msg_chat_id,UserId[2]) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId[2],"❍ تم تنزيله من المميزين مسبقا ").Reply,"md",true)  
@@ -4141,7 +4141,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName[2]:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if UserName[1] == "مطور ثانوي" then
 if not msg.ControllerBot then 
@@ -4150,7 +4150,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Devss:Groups",UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم ترقيته مطور ثانوي مسبقا ").Reply,"md",true)  
@@ -4166,7 +4166,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Dev:Groups",UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم ترقيته مطور مسبقا ").Reply,"md",true)  
@@ -4193,7 +4193,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Supcreator:Group"..msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم ترقيته منشئ اساسي مسبقا ").Reply,"md",true)  
@@ -4209,7 +4209,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Creator:Group"..msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم ترقيته منشئ  مسبقا ").Reply,"md",true)  
@@ -4225,7 +4225,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Manger:Group"..msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم ترقيته مدير  مسبقا ").Reply,"md",true)  
@@ -4241,7 +4241,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Creator and not Redis:get(black.."Status:SetId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الرفع) من قبل المنشئين","md",true)
@@ -4260,7 +4260,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Creator and not Redis:get(black.."Status:SetId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الرفع) من قبل المنشئين","md",true)
@@ -4282,7 +4282,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if TextMsg == 'مطور ثانوي' then
 if not msg.ControllerBot then 
@@ -4291,7 +4291,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Devss:Groups",Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم ترقيته مطور ثانوي مسبقا ").Reply,"md",true)  
@@ -4307,7 +4307,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Dev:Groups",Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم ترقيته مطور مسبقا ").Reply,"md",true)  
@@ -4334,7 +4334,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Supcreator:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم ترقيته منشئ اساسي مسبقا ").Reply,"md",true)  
@@ -4350,7 +4350,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Creator:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم ترقيته منشئ  مسبقا ").Reply,"md",true)  
@@ -4366,7 +4366,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Manger:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم ترقيته مدير  مسبقا ").Reply,"md",true)  
@@ -4382,7 +4382,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Creator and not Redis:get(black.."Status:SetId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الرفع) من قبل المنشئين","md",true)
@@ -4401,7 +4401,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Creator and not Redis:get(black.."Status:SetId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الرفع) من قبل المنشئين","md",true)
@@ -4418,7 +4418,7 @@ if TextMsg == "خول" then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."kholat:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍محطوط ف قايمة الخولات من  بدري 😂 ").Reply,"md",true)  
@@ -4431,7 +4431,7 @@ if TextMsg == "وتكه" then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."wtka:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍دي اجمد بنوته هنا ف القايمة من بدري يباشه 😂 ").Reply,"md",true)  
@@ -4444,7 +4444,7 @@ if TextMsg == "متوحد" then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."twhd:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍دا مولود كده ومحطوط عندنا من زمان 😂 😂 ").Reply,"md",true)  
@@ -4457,7 +4457,7 @@ if TextMsg == "متوحده" then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."twhd:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍دا مولود كده ومحطوط عندنا من زمان 😂 😂 ").Reply,"md",true)  
@@ -4470,7 +4470,7 @@ if TextMsg == "كلب" then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."klb:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍دا مولود كده ومحطوط عندنا من زمان بيشمشم علي اي بنت 😂 😂 ").Reply,"md",true)  
@@ -4483,7 +4483,7 @@ if TextMsg == "حمار" then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."mar:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍نزلناه من زمان وفكينا الكارو 😂 😂 ").Reply,"md",true)  
@@ -4496,7 +4496,7 @@ if TextMsg == "سمب" then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."smb:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍نزلناه من زمان واخد كورسات رجوله 😂 😂 ").Reply,"md",true)  
@@ -4509,7 +4509,7 @@ if TextMsg == "قرد" then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."2rd:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍نزلناه من زمان من ع الشجره 😂 😂 ").Reply,"md",true)  
@@ -4522,7 +4522,7 @@ if TextMsg == "عره" then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."3ra:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍محدش محترمه كده كده  😂 😂 ").Reply,"md",true)  
@@ -4535,7 +4535,7 @@ if TextMsg == "غبي" then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."8by:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍هو كده كده محطوط ف قايمة الاغبية  😂 😂 ").Reply,"md",true)  
@@ -4555,7 +4555,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if UserId[1] == 'مطور ثانوي' then
 if not msg.ControllerBot then 
@@ -4564,7 +4564,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Devss:Groups",UserId) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId,"❍ تم ترقيته مطور ثانوي مسبقا ").Reply,"md",true)  
@@ -4580,7 +4580,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Dev:Groups",UserId) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId,"❍ تم ترقيته مطور مسبقا ").Reply,"md",true)  
@@ -4596,7 +4596,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Owners:Group"..msg_chat_id,UserId[2]) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId[2],"❍ تم ترقيته مالك مسبقا ").Reply,"md",true)  
@@ -4612,7 +4612,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Supcreator:Group"..msg_chat_id,UserId[2]) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId[2],"❍ تم ترقيته منشئ اساسي مسبقا ").Reply,"md",true)  
@@ -4628,7 +4628,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Creator:Group"..msg_chat_id,UserId[2]) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId[2],"❍ تم ترقيته منشئ  مسبقا ").Reply,"md",true)  
@@ -4644,7 +4644,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:sismember(black.."Manger:Group"..msg_chat_id,UserId[2]) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId[2],"❍ تم ترقيته مدير  مسبقا ").Reply,"md",true)  
@@ -4660,7 +4660,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Creator and not Redis:get(black.."Status:SetId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الرفع) من قبل المنشئين","md",true)
@@ -4679,7 +4679,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Creator and not Redis:get(black.."Status:SetId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الرفع) من قبل المنشئين","md",true)
@@ -4805,7 +4805,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Devss:Groups") 
 if #Info_Members == 0 then
@@ -4832,7 +4832,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Dev:Groups") 
 if #Info_Members == 0 then
@@ -4847,7 +4847,7 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = datar
 }
-LuaTele.sendText(msg.chat_id,msg.id,'※ ❍ قائمه مطورين البوت',"md",false, false, false, false, reply_markup)
+LuaTele.sendText(msg.chat_id,msg.id,'※ ❍ قائمه مطورين ال',"md",false, false, false, false, reply_markup)
 end
 if text == 'المالكين' then
 if not msg.Dev then
@@ -4856,7 +4856,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Owners:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -4883,7 +4883,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Supcreator:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -4910,7 +4910,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Creator:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -4937,7 +4937,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Manger:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -4964,7 +4964,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Admin:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -4991,7 +4991,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Special:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5016,7 +5016,7 @@ if text == 'الخولات' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."kholat:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5040,7 +5040,7 @@ if text == 'الوتكات' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."wtka:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5064,7 +5064,7 @@ if text == 'المتوحدين' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."twhd:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5088,7 +5088,7 @@ if text == 'الكلاب' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."klb:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5112,7 +5112,7 @@ if text == 'الحمير' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."mar:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5136,7 +5136,7 @@ if text == 'العرر' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."3ra:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5160,7 +5160,7 @@ if text == 'السمب' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."smb:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5184,7 +5184,7 @@ if text == 'القرود' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."2rd:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5208,7 +5208,7 @@ if text == 'الاغبياء' then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."8by:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5236,7 +5236,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."BanAll:Groups") 
 if #Info_Members == 0 then
@@ -5263,7 +5263,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."ktmAll:Groups") 
 if #Info_Members == 0 then
@@ -5290,7 +5290,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."BanGroup:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5317,7 +5317,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."SilentGroup:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -5345,7 +5345,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if TextMsg == 'الرابط' then
 Redis:set(black.."Status:Link"..msg_chat_id,true) 
@@ -5362,7 +5362,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Status:Id"..msg_chat_id,true) 
 return send(msg_chat_id,msg_id,"❍ تم تفعيل الايدي ","md",true)
@@ -5374,7 +5374,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Status:IdPhoto"..msg_chat_id,true) 
 return send(msg_chat_id,msg_id,"❍ تم تفعيل الايدي بالصوره ","md",true)
@@ -5386,7 +5386,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Status:Reply"..msg_chat_id) 
 return send(msg_chat_id,msg_id,"❍ تم تفعيل الردود ","md",true)
@@ -5398,7 +5398,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Status:ReplySudo"..msg_chat_id) 
 return send(msg_chat_id,msg_id,"❍ تم تفعيل الردود العامه ","md",true)
@@ -5410,7 +5410,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Status:BanId"..msg_chat_id,true) 
 return send(msg_chat_id,msg_id,"❍ تم تفعيل الحظر , الطرد , التقييد","md",true)
@@ -5422,7 +5422,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Status:SetId"..msg_chat_id,true) 
 return send(msg_chat_id,msg_id,"❍ تم تفعيل الرفع ","md",true)
@@ -5443,17 +5443,17 @@ if TextMsg == 'نزلني' then
 Redis:set(black.."Status:remMe"..msg_chat_id,true) 
 return send(msg_chat_id,msg_id,"❍ تم تفعيل نزلني ","md",true)
 end
-if TextMsg == 'البوت الخدمي' then
+if TextMsg == 'ال الخدمي' then
 if not msg.ControllerBot then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(1)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."BotFree",true) 
-return send(msg_chat_id,msg_id,"❍ تم تفعيل البوت الخدمي ","md",true)
+return send(msg_chat_id,msg_id,"❍ تم تفعيل ال الخدمي ","md",true)
 end
 if TextMsg == 'التواصل' then
 if not msg.ControllerBot then 
@@ -5462,10 +5462,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."TwaslBot",true) 
-return send(msg_chat_id,msg_id,"❍ تم تفعيل التواصل داخل البوت ","md",true)
+return send(msg_chat_id,msg_id,"❍ تم تفعيل التواصل داخل ال ","md",true)
 end
 
 end
@@ -5478,7 +5478,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if TextMsg == 'الرابط' then
 Redis:del(black.."Status:Link"..msg_chat_id) 
@@ -5495,7 +5495,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Status:Id"..msg_chat_id) 
 return send(msg_chat_id,msg_id,"❍ تم تعطيل الايدي ","md",true)
@@ -5507,7 +5507,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Status:IdPhoto"..msg_chat_id) 
 return send(msg_chat_id,msg_id,"❍ تم تعطيل الايدي بالصوره ","md",true)
@@ -5519,7 +5519,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Status:Reply"..msg_chat_id,true) 
 return send(msg_chat_id,msg_id,"❍ تم تعطيل الردود ","md",true)
@@ -5531,7 +5531,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Status:ReplySudo"..msg_chat_id,true) 
 return send(msg_chat_id,msg_id,"❍ تم تعطيل الردود العامه ","md",true)
@@ -5543,7 +5543,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Status:BanId"..msg_chat_id) 
 return send(msg_chat_id,msg_id,"❍ تم تعطيل الحظر , الطرد , التقييد","md",true)
@@ -5555,7 +5555,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Status:SetId"..msg_chat_id) 
 return send(msg_chat_id,msg_id,"❍ تم تعطيل الرفع ","md",true)
@@ -5576,17 +5576,17 @@ if TextMsg == 'نزلني' then
 Redis:del(black.."Status:remMe"..msg_chat_id) 
 return send(msg_chat_id,msg_id,"❍ تم تعطيل نزلني ","md",true)
 end
-if TextMsg == 'البوت الخدمي' then
+if TextMsg == 'ال الخدمي' then
 if not msg.ControllerBot then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(1)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."BotFree") 
-return send(msg_chat_id,msg_id,"❍ تم تعطيل البوت الخدمي ","md",true)
+return send(msg_chat_id,msg_id,"❍ تم تعطيل ال الخدمي ","md",true)
 end
 if TextMsg == 'التواصل' then
 if not msg.ControllerBot then 
@@ -5595,10 +5595,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."TwaslBot") 
-return send(msg_chat_id,msg_id,"❍ تم تعطيل التواصل داخل البوت ","md",true)
+return send(msg_chat_id,msg_id,"❍ تم تعطيل التواصل داخل ال ","md",true)
 end
 
 end
@@ -5616,7 +5616,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if Controller(msg_chat_id,UserId_Info.id) == 'المطور الاساسي' then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,UserId_Info.id).." } *","md",true)  
@@ -5646,7 +5646,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if not Redis:sismember(black.."BanAll:Groups",UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم الغاء حظره عام من المجموعات مسبقا ").Reply,"md",true)  
@@ -5670,7 +5670,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if Controller(msg_chat_id,UserId_Info.id) == 'المطور الاساسي' then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,UserId_Info.id).." } *","md",true)  
@@ -5700,7 +5700,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if not Redis:sismember(black.."ktmAll:Groups",UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم الغاء كتمه عام من المجموعات مسبقا ").Reply,"md",true)  
@@ -5718,13 +5718,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -5737,7 +5737,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if StatusCanOrNotCan(msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,UserId_Info.id).." } *","md",true)  
@@ -5758,13 +5758,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 local UserId_Info = LuaTele.searchPublicChat(UserName)
 if not UserId_Info.id then
@@ -5774,7 +5774,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if not Redis:sismember(black.."BanGroup:Group"..msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم الغاء حظره من الجروب مسبقا ").Reply,"md",true)  
@@ -5793,10 +5793,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if GetInfoBot(msg).Delmsg == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حذف الرسائل* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حذف الرسائل* ',"md",true)  
 end
 local UserId_Info = LuaTele.searchPublicChat(UserName)
 if not UserId_Info.id then
@@ -5806,7 +5806,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if StatusSilent(msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,UserId_Info.id).." } *","md",true)  
@@ -5826,7 +5826,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local UserId_Info = LuaTele.searchPublicChat(UserName)
 if not UserId_Info.id then
@@ -5836,7 +5836,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if not Redis:sismember(black.."SilentGroup:Group"..msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم الغاء كتمه من الجروب ").Reply,"md",true)  
@@ -5853,13 +5853,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -5872,7 +5872,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName[3] and UserName[3]:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if StatusCanOrNotCan(msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,UserId_Info.id).." } *","md",true)  
@@ -5901,13 +5901,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -5918,7 +5918,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if StatusCanOrNotCan(msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,Message_Reply.sender.user_id).." } *","md",true)  
@@ -5947,13 +5947,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -5988,10 +5988,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -6004,7 +6004,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if StatusCanOrNotCan(msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,UserId_Info.id).." } *","md",true)  
@@ -6021,13 +6021,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 local UserId_Info = LuaTele.searchPublicChat(UserName)
 if not UserId_Info.id then
@@ -6037,7 +6037,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 LuaTele.setChatMemberStatus(msg.chat_id,UserId_Info.id,'restricted',{1,1,1,1,1,1,1,1})
 return send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم الغاء تقييده من الجروب").Reply,"md",true)  
@@ -6051,13 +6051,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -6070,7 +6070,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if StatusCanOrNotCan(msg_chat_id,UserId_Info.id) then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,UserId_Info.id).." } *","md",true)  
@@ -6092,7 +6092,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if Controller(msg_chat_id,Message_Reply.sender.user_id) == 'المطور الاساسي' then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,Message_Reply.sender.user_id).." } *","md",true)  
@@ -6116,7 +6116,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if not Redis:sismember(black.."BanAll:Groups",Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم الغاء حظره عام من المجموعات مسبقا ").Reply,"md",true)  
@@ -6137,7 +6137,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if Controller(msg_chat_id,Message_Reply.sender.user_id) == 'المطور الاساسي' then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,Message_Reply.sender.user_id).." } *","md",true)  
@@ -6163,7 +6163,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if not Redis:sismember(black.."ktmAll:Groups",Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم الغاء كتمه عام من المجموعات مسبقا ").Reply,"md",true)  
@@ -6179,13 +6179,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -6196,7 +6196,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if StatusCanOrNotCan(msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,Message_Reply.sender.user_id).." } *","md",true)  
@@ -6216,10 +6216,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Message_Reply.sender.user_id)
@@ -6227,7 +6227,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if not Redis:sismember(black.."BanGroup:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم الغاء حظره من الجروب مسبقا ").Reply,"md",true)  
@@ -6245,10 +6245,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if GetInfoBot(msg).Delmsg == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حذف الرسائل* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حذف الرسائل* ',"md",true)  
 end
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Message_Reply.sender.user_id)
@@ -6256,7 +6256,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if StatusSilent(msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,Message_Reply.sender.user_id).." } *","md",true)  
@@ -6275,7 +6275,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Message_Reply.sender.user_id)
@@ -6283,7 +6283,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if not Redis:sismember(black.."SilentGroup:Group"..msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم الغاء كتمه من الجروب ").Reply,"md",true)  
@@ -6300,13 +6300,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -6317,7 +6317,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if StatusCanOrNotCan(msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,Message_Reply.sender.user_id).." } *","md",true)  
@@ -6333,13 +6333,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Message_Reply.sender.user_id)
@@ -6347,7 +6347,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 LuaTele.setChatMemberStatus(msg.chat_id,Message_Reply.sender.user_id,'restricted',{1,1,1,1,1,1,1,1})
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم الغاء تقييده من الجروب").Reply,"md",true)  
@@ -6360,13 +6360,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -6377,7 +6377,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if StatusCanOrNotCan(msg_chat_id,Message_Reply.sender.user_id) then
 return send(msg_chat_id,msg_id,"\n*❍ عذرآ لا تستطيع استخدام الامر على { "..Controller(msg_chat_id,Message_Reply.sender.user_id).." } *","md",true)  
@@ -6485,13 +6485,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -6521,13 +6521,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 local UserInfo = LuaTele.getUser(UserId)
 if UserInfo.luatele == "error" and UserInfo.code == 6 then
@@ -6550,10 +6550,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if GetInfoBot(msg).Delmsg == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حذف الرسائل* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حذف الرسائل* ',"md",true)  
 end
 local UserInfo = LuaTele.getUser(UserId)
 if UserInfo.luatele == "error" and UserInfo.code == 6 then
@@ -6577,7 +6577,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local UserInfo = LuaTele.getUser(UserId)
 if UserInfo.luatele == "error" and UserInfo.code == 6 then
@@ -6599,13 +6599,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -6629,13 +6629,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 local UserInfo = LuaTele.getUser(UserId)
 if UserInfo.luatele == "error" and UserInfo.code == 6 then
@@ -6653,13 +6653,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if not msg.Creator and not Redis:get(black.."Status:BanId"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل (الحظر : الطرد : التقييد) من قبل المدراء","md",true)
@@ -6734,10 +6734,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local Info_Members = LuaTele.getSupergroupMembers(msg_chat_id, "Administrators", "*", 0, 200)
 listAdmin = '\n*❍ قائمه الادمنيه \n ــــــــــــــــــــــ❍ـــــــــــــــــــــ*\n'
@@ -6764,10 +6764,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local Info_Members = LuaTele.getSupergroupMembers(msg_chat_id, "Administrators", "*", 0, 200)
 local List_Members = Info_Members.members
@@ -6789,7 +6789,7 @@ end
 
 if text == 'المالك' then
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local Info_Members = LuaTele.getSupergroupMembers(msg_chat_id, "Administrators", "*", 0, 200)
 local List_Members = Info_Members.members
@@ -6811,21 +6811,21 @@ end
 end
 
 
-if text == 'كشف البوتات' then
+if text == 'كشف الات' then
 if not msg.Manger then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(6)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local Info_Members = LuaTele.getSupergroupMembers(msg_chat_id, "Bots", "*", 0, 200)
 local List_Members = Info_Members.members
-listBots = '\n*❍ قائمه البوتات \n ــــــــــــــــــــــ❍ـــــــــــــــــــــ*\n'
+listBots = '\n*❍ قائمه الات \n ــــــــــــــــــــــ❍ـــــــــــــــــــــ*\n'
 x = 0
 for k, v in pairs(List_Members) do
 local UserInfo = LuaTele.getUser(v.member_id.user_id)
@@ -6837,7 +6837,7 @@ Admin = ""
 end
 listBots = listBots.."*"..k.." - @"..UserInfo.username.."* "..Admin.."\n"
 end
-send(msg_chat_id,msg_id,listBots.."*\nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n❍عدد البوتات التي هي ادمن ( "..x.." )*","md",true)  
+send(msg_chat_id,msg_id,listBots.."*\nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n❍عدد الات التي هي ادمن ( "..x.." )*","md",true)  
 end
 
 
@@ -6849,10 +6849,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local Info_Members = LuaTele.getSupergroupMembers(msg_chat_id, "Recent", "*", 0, 200)
 local List_Members = Info_Members.members
@@ -6887,7 +6887,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 send(msg_chat_id,msg_id,"*\n❍ تم مغادرة الجروب بامر من المطور *","md",true)  
 local Left_Bot = LuaTele.leaveChat(msg.chat_id)
@@ -6899,7 +6899,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = LuaTele.searchChatMembers(msg_chat_id, "*", 200)
 local List_Members = Info_Members.members
@@ -6966,7 +6966,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍︙ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍︙ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:channell"..msg_chat_id,true) 
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍︙ تم قفـل القنوات").Lock,"md",true)  
@@ -6979,7 +6979,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:text"..msg_chat_id,true) 
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الدردشه").Lock,"md",true)  
@@ -6992,7 +6992,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:set(black.."Lock:AddMempar"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل اضافة الاعضاء").Lock,"md",true)  
@@ -7005,36 +7005,36 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:set(black.."Lock:Join"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل دخول الاعضاء").Lock,"md",true)  
 return false
 end 
-if text == "قفل البوتات" then 
+if text == "قفل الات" then 
 if not msg.Admin then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(7)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:set(black.."Lock:Bot:kick"..msg_chat_id,"del")  
-send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل البوتات").Lock,"md",true)  
+send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الات").Lock,"md",true)  
 return false
 end 
-if text == "قفل البوتات بالطرد" then 
+if text == "قفل الات بالطرد" then 
 if not msg.Admin then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(7)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:set(black.."Lock:Bot:kick"..msg_chat_id,"kick")  
-send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل البوتات").lockKick,"md",true)  
+send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الات").lockKick,"md",true)  
 return false
 end 
 if text == "قفل الاشعارات" then 
@@ -7044,7 +7044,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end  
 Redis:set(black.."Lock:tagservr"..msg_chat_id,true)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الاشعارات").Lock,"md",true)  
@@ -7057,7 +7057,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end  
 Redis:set(black.."lockalllll"..msg_chat_id,"off")
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل @all هنا").Lock,"md",true)  
@@ -7070,7 +7070,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end  
 Redis:set(black.."lockalllll"..msg_chat_id,"on")
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح @all هنا").Lock,"md",true)  
@@ -7083,7 +7083,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end  
 Redis:set(black.."lockpin"..msg_chat_id,(LuaTele.getChatPinnedMessage(msg_chat_id).id or true)) 
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التثبيت هنا").Lock,"md",true)  
@@ -7096,7 +7096,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:set(black.."Lock:edit"..msg_chat_id,true) 
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل تعديل").Lock,"md",true)  
@@ -7109,7 +7109,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:set(black.."Lock:edit"..msg_chat_id,true) 
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل تعديل").Lock,"md",true)  
@@ -7122,7 +7122,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end  
 Redis:set(black.."Lock:tagservrbot"..msg_chat_id,true)   
 list ={"Lock:Bot:kick","Lock:User:Name","Lock:hashtak","Lock:Cmd","Lock:Link","Lock:forward","Lock:Keyboard","Lock:geam","Lock:Photo","Lock:Animation","Lock:Video","Lock:Audio","Lock:vico","Lock:Sticker","Lock:Document","Lock:Unsupported","Lock:Markdaun","Lock:Contact","Lock:Spam"}
@@ -7142,7 +7142,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:del(black.."Lock:AddMempar"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح اضافة الاعضاء").unLock,"md",true)  
@@ -7155,7 +7155,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:del(black.."Lock:channell"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح القنوات").unLock,"md",true)  
@@ -7176,7 +7176,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:del(black.."Lock:text"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الدردشه").unLock,"md",true)  
@@ -7189,36 +7189,36 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:del(black.."Lock:Join"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح دخول الاعضاء").unLock,"md",true)  
 return false
 end 
-if text == "فتح البوتات" then 
+if text == "فتح الات" then 
 if not msg.Admin then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(7)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:del(black.."Lock:Bot:kick"..msg_chat_id)  
-send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فـتح البوتات").unLock,"md",true)  
+send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فـتح الات").unLock,"md",true)  
 return false
 end 
-if text == "فتح البوتات" then 
+if text == "فتح الات" then 
 if not msg.Admin then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(7)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:del(black.."Lock:Bot:kick"..msg_chat_id)  
-send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فـتح البوتات").unLock,"md",true)  
+send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فـتح الات").unLock,"md",true)  
 return false
 end 
 if text == "فتح الاشعارات" then 
@@ -7228,7 +7228,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end  
 Redis:del(black.."Lock:tagservr"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فـتح الاشعارات").unLock,"md",true)  
@@ -7241,7 +7241,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:del(black.."lockpin"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فـتح التثبيت هنا").unLock,"md",true)  
@@ -7254,7 +7254,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:del(black.."Lock:edit"..msg_chat_id) 
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فـتح تعديل").unLock,"md",true)  
@@ -7267,7 +7267,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:del(black.."Lock:edit"..msg_chat_id) 
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فـتح تعديل").unLock,"md",true)  
@@ -7280,7 +7280,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end 
 Redis:del(black.."Lock:tagservrbot"..msg_chat_id)   
 list ={"Lock:Bot:kick","Lock:User:Name","Lock:hashtak","Lock:Cmd","Lock:Link","Lock:forward","Lock:Keyboard","Lock:geam","Lock:Photo","Lock:Animation","Lock:Video","Lock:Audio","Lock:vico","Lock:Sticker","Lock:Document","Lock:Unsupported","Lock:Markdaun","Lock:Contact","Lock:Spam"}
@@ -7298,7 +7298,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:hset(black.."Spam:Group:User"..msg_chat_id ,"Spam:User","del")  
 return send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التكرار").Lock,"md",true)  
@@ -7309,7 +7309,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:hset(black.."Spam:Group:User"..msg_chat_id ,"Spam:User","keed")  
 return send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التكرار").lockKid,"md",true)  
@@ -7320,7 +7320,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:hset(black.."Spam:Group:User"..msg_chat_id ,"Spam:User","mute")  
 return send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التكرار").lockKtm,"md",true)  
@@ -7331,7 +7331,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:hset(black.."Spam:Group:User"..msg_chat_id ,"Spam:User","kick")  
 return send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التكرار").lockKick,"md",true)  
@@ -7342,7 +7342,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:hdel(black.."Spam:Group:User"..msg_chat_id ,"Spam:User")  
 return send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح التكرار").unLock,"md",true)  
@@ -7354,7 +7354,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Link"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الروابط").Lock,"md",true)  
@@ -7367,7 +7367,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Link"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الروابط").lockKid,"md",true)  
@@ -7380,7 +7380,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Link"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الروابط").lockKtm,"md",true)  
@@ -7393,7 +7393,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Link"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الروابط").lockKick,"md",true)  
@@ -7406,7 +7406,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Link"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الروابط").unLock,"md",true)  
@@ -7420,7 +7420,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:User:Name"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل المعرفات").Lock,"md",true)  
@@ -7433,7 +7433,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:User:Name"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل المعرفات").lockKid,"md",true)  
@@ -7446,7 +7446,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:User:Name"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل المعرفات").lockKtm,"md",true)  
@@ -7459,7 +7459,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:User:Name"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل المعرفات").lockKick,"md",true)  
@@ -7472,7 +7472,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:User:Name"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح المعرفات").unLock,"md",true)  
@@ -7485,7 +7485,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:hashtak"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التاك").Lock,"md",true)  
@@ -7498,7 +7498,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:hashtak"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التاك").lockKid,"md",true)  
@@ -7511,7 +7511,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:hashtak"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التاك").lockKtm,"md",true)  
@@ -7524,7 +7524,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:hashtak"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التاك").lockKick,"md",true)  
@@ -7537,7 +7537,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:hashtak"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح التاك").unLock,"md",true)  
@@ -7550,7 +7550,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Cmd"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الشارحه").Lock,"md",true)  
@@ -7563,7 +7563,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Cmd"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الشارحه").lockKid,"md",true)  
@@ -7576,7 +7576,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Cmd"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الشارحه").lockKtm,"md",true)  
@@ -7589,7 +7589,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Cmd"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الشارحه").lockKick,"md",true)  
@@ -7602,7 +7602,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Cmd"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الشارحه").unLock,"md",true)  
@@ -7643,7 +7643,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Photo"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الصور").Lock,"md",true)  
@@ -7656,7 +7656,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Photo"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الصور").lockKid,"md",true)  
@@ -7669,7 +7669,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Photo"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الصور").lockKtm,"md",true)  
@@ -7682,7 +7682,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Photo"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الصور").lockKick,"md",true)  
@@ -7695,7 +7695,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Photo"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الصور").unLock,"md",true)  
@@ -7708,7 +7708,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Video"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الفيديو").Lock,"md",true)  
@@ -7721,7 +7721,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Video"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الفيديو").lockKid,"md",true)  
@@ -7734,7 +7734,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Video"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الفيديو").lockKtm,"md",true)  
@@ -7747,7 +7747,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Video"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الفيديو").lockKick,"md",true)  
@@ -7760,7 +7760,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Video"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الفيديو").unLock,"md",true)  
@@ -7773,7 +7773,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Animation"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل المتحركه").Lock,"md",true)  
@@ -7786,7 +7786,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Animation"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل المتحركه").lockKid,"md",true)  
@@ -7799,7 +7799,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Animation"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل المتحركه").lockKtm,"md",true)  
@@ -7812,7 +7812,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Animation"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل المتحركه").lockKick,"md",true)  
@@ -7825,7 +7825,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Animation"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح المتحركه").unLock,"md",true)  
@@ -7838,7 +7838,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:geam"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الالعاب").Lock,"md",true)  
@@ -7851,7 +7851,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:geam"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الالعاب").lockKid,"md",true)  
@@ -7864,7 +7864,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:geam"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الالعاب").lockKtm,"md",true)  
@@ -7877,7 +7877,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:geam"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الالعاب").lockKick,"md",true)  
@@ -7890,7 +7890,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:geam"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الالعاب").unLock,"md",true)  
@@ -7903,7 +7903,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Audio"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الاغاني").Lock,"md",true)  
@@ -7916,7 +7916,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Audio"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الاغاني").lockKid,"md",true)  
@@ -7929,7 +7929,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Audio"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الاغاني").lockKtm,"md",true)  
@@ -7942,7 +7942,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Audio"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الاغاني").lockKick,"md",true)  
@@ -7955,7 +7955,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Audio"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الاغاني").unLock,"md",true)  
@@ -7968,7 +7968,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:vico"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الصوت").Lock,"md",true)  
@@ -7981,7 +7981,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:vico"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الصوت").lockKid,"md",true)  
@@ -7994,7 +7994,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:vico"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الصوت").lockKtm,"md",true)  
@@ -8007,7 +8007,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:vico"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الصوت").lockKick,"md",true)  
@@ -8020,7 +8020,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:vico"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الصوت").unLock,"md",true)  
@@ -8033,7 +8033,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Keyboard"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الكيبورد").Lock,"md",true)  
@@ -8046,7 +8046,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Keyboard"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الكيبورد").lockKid,"md",true)  
@@ -8059,7 +8059,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Keyboard"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الكيبورد").lockKtm,"md",true)  
@@ -8072,7 +8072,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Keyboard"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الكيبورد").lockKick,"md",true)  
@@ -8085,7 +8085,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Keyboard"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الكيبورد").unLock,"md",true)  
@@ -8098,7 +8098,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Sticker"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الملصقات").Lock,"md",true)  
@@ -8111,7 +8111,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Sticker"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الملصقات").lockKid,"md",true)  
@@ -8124,7 +8124,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Sticker"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الملصقات").lockKtm,"md",true)  
@@ -8137,7 +8137,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Sticker"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الملصقات").lockKick,"md",true)  
@@ -8150,7 +8150,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Sticker"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الملصقات").unLock,"md",true)  
@@ -8163,7 +8163,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:forward"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التوجيه").Lock,"md",true)  
@@ -8176,7 +8176,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:forward"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التوجيه").lockKid,"md",true)  
@@ -8189,7 +8189,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:forward"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التوجيه").lockKtm,"md",true)  
@@ -8202,7 +8202,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:forward"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل التوجيه").lockKick,"md",true)  
@@ -8215,7 +8215,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:forward"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح التوجيه").unLock,"md",true)  
@@ -8228,7 +8228,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Document"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الملفات").Lock,"md",true)  
@@ -8241,7 +8241,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Document"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الملفات").lockKid,"md",true)  
@@ -8254,7 +8254,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Document"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الملفات").lockKtm,"md",true)  
@@ -8267,7 +8267,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Document"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الملفات").lockKick,"md",true)  
@@ -8280,7 +8280,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Document"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الملفات").unLock,"md",true)  
@@ -8293,7 +8293,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Unsupported"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل السيلفي").Lock,"md",true)  
@@ -8306,7 +8306,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Unsupported"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل السيلفي").lockKid,"md",true)  
@@ -8319,7 +8319,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Unsupported"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل السيلفي").lockKtm,"md",true)  
@@ -8332,7 +8332,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Unsupported"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل السيلفي").lockKick,"md",true)  
@@ -8345,7 +8345,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Unsupported"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح السيلفي").unLock,"md",true)  
@@ -8358,7 +8358,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Markdaun"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الماركداون").Lock,"md",true)  
@@ -8371,7 +8371,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Markdaun"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الماركداون").lockKid,"md",true)  
@@ -8384,7 +8384,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Markdaun"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الماركداون").lockKtm,"md",true)  
@@ -8397,7 +8397,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Markdaun"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الماركداون").lockKick,"md",true)  
@@ -8410,7 +8410,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Markdaun"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الماركداون").unLock,"md",true)  
@@ -8423,7 +8423,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Contact"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الجهات").Lock,"md",true)  
@@ -8436,7 +8436,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Contact"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الجهات").lockKid,"md",true)  
@@ -8449,7 +8449,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Contact"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الجهات").lockKtm,"md",true)  
@@ -8462,7 +8462,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Contact"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الجهات").lockKick,"md",true)  
@@ -8475,7 +8475,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Contact"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الجهات").unLock,"md",true)  
@@ -8488,7 +8488,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Spam"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الكلايش").Lock,"md",true)  
@@ -8501,7 +8501,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Spam"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الكلايش").lockKid,"md",true)  
@@ -8514,7 +8514,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Spam"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الكلايش").lockKtm,"md",true)  
@@ -8527,7 +8527,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Spam"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الكلايش").lockKick,"md",true)  
@@ -8540,7 +8540,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Spam"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الكلايش").unLock,"md",true)  
@@ -8553,7 +8553,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Inlen"..msg_chat_id,"del")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الانلاين").Lock,"md",true)  
@@ -8566,7 +8566,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Inlen"..msg_chat_id,"ked")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الانلاين").lockKid,"md",true)  
@@ -8579,7 +8579,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Inlen"..msg_chat_id,"ktm")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الانلاين").lockKtm,"md",true)  
@@ -8592,7 +8592,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Lock:Inlen"..msg_chat_id,"kick")  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم قفـل الانلاين").lockKick,"md",true)  
@@ -8605,7 +8605,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Lock:Inlen"..msg_chat_id)  
 send(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"❍ تم فتح الانلاين").unLock,"md",true)  
@@ -8618,7 +8618,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Set:Link"..msg_chat_id..""..msg.sender.user_id,120,true) 
 return send(msg_chat_id,msg_id,"٭ ارسل رابط الجروب او رابط قناة الجروب","md",true)  
@@ -8630,7 +8630,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Group:Link"..msg_chat_id) 
 return send(msg_chat_id,msg_id,"❍ تم مسح الرابط ","md",true)             
@@ -8663,7 +8663,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Tshake:Welcome:Group" .. msg_chat_id .. "" .. msg.sender.user_id, 120, true)  
 return send(msg_chat_id,msg_id,"❍ ارسل لي الترحيب الان".."\n❍تستطيع اضافة مايلي !\n❍دالة عرض الاسم ➢{`name`}\n❍دالة عرض المعرف ➢{`user`}\n❍دالة عرض اسم الجروب ➢{`NameCh`}","md",true)   
@@ -8675,7 +8675,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not Redis:get(black.."Status:Welcome"..msg_chat_id) then
 return send(msg_chat_id,msg_id,"❍ تم تعطيل الترحيب من قبل الادمنيه","md",true)
@@ -8694,7 +8694,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Welcome:Group"..msg_chat_id) 
 return send(msg_chat_id,msg_id,"❍ تم ازالة ترحيب الجروب","md",true)   
@@ -8706,7 +8706,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Set:Rules:" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 return send(msg_chat_id,msg_id,"❍ ارسل لي القوانين الان","md",true)  
@@ -8718,7 +8718,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Group:Rules"..msg_chat_id) 
 return send(msg_chat_id,msg_id,"❍ تم ازالة قوانين الجروب","md",true)    
@@ -8738,13 +8738,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).Info == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه تغيير المعلومات* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه تغيير المعلومات* ',"md",true)  
 end
 Redis:setex(black.."Set:Description:" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 return send(msg_chat_id,msg_id,"❍ ارسل لي وصف الجروب الان","md",true)  
@@ -8756,13 +8756,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).Info == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه تغيير المعلومات* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه تغيير المعلومات* ',"md",true)  
 end
 LuaTele.setChatDescription(msg_chat_id, '') 
 return send(msg_chat_id,msg_id,"❍ تم ازالة قوانين الجروب","md",true)    
@@ -8776,13 +8776,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).Info == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه تغيير المعلومات* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه تغيير المعلومات* ',"md",true)  
 end
 LuaTele.setChatTitle(msg_chat_id,NameChat)
 return send(msg_chat_id,msg_id,"❍ تم تغيير اسم الجروب الى : "..NameChat,"md",true)    
@@ -8795,10 +8795,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if GetInfoBot(msg).Info == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه تغيير المعلومات* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه تغيير المعلومات* ',"md",true)  
 end
 Redis:set(black.."Chat:Photo"..msg_chat_id..":"..msg.sender.user_id,true) 
 return send(msg_chat_id,msg_id,"❍ ارسل الصوره لوضعها","md",true)    
@@ -8811,7 +8811,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."List:Filter"..msg_chat_id)  
 if #list == 0 then  
@@ -8834,7 +8834,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."List:Filter"..msg_chat_id)  
 if #list == 0 then  
@@ -8868,7 +8868,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black..'FilterText'..msg_chat_id..':'..msg.sender.user_id,'true')
 return send(msg_chat_id,msg_id,'\n*❍ ارسل الان { ملصق ,متحركه ,صوره ,رساله } *',"md",true)  
@@ -8880,7 +8880,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black..'FilterText'..msg_chat_id..':'..msg.sender.user_id,'DelFilter')
 return send(msg_chat_id,msg_id,'\n*❍ ارسل الان { ملصق ,متحركه ,صوره ,رساله } *',"md",true)  
@@ -8893,7 +8893,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."All:Command:Reids:Group"..msg_chat_id..":"..msg.sender.user_id,"true") 
 return send(msg_chat_id,msg_id,"❍الان ارسل لي الامر القديم ...","md",true)
@@ -8905,7 +8905,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."All:Command:Reids:Group:Del"..msg_chat_id..":"..msg.sender.user_id,"true") 
 return send(msg_chat_id,msg_id,"❍ ارسل الان الامر الذي قمت بوضعه مكان الامر القديم","md",true)
@@ -8917,7 +8917,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."All:Command:List:Group")
 for k,v in pairs(list) do
@@ -8933,7 +8933,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."All:Command:List:Group")
 Command = "❍ قائمه الاوامر المضافه العامه  \nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n"
@@ -8959,7 +8959,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Command:Reids:Group"..msg_chat_id..":"..msg.sender.user_id,"true") 
 return send(msg_chat_id,msg_id,"❍الان ارسل لي الامر القديم ...","md",true)
@@ -8971,7 +8971,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Command:Reids:Group:Del"..msg_chat_id..":"..msg.sender.user_id,"true") 
 return send(msg_chat_id,msg_id,"❍ ارسل الان الامر الذي قمت بوضعه مكان الامر القديم","md",true)
@@ -8983,7 +8983,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."Command:List:Group"..msg_chat_id)
 for k,v in pairs(list) do
@@ -8999,7 +8999,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."Command:List:Group"..msg_chat_id.."")
 Command = "❍ قائمه الاوامر المضافه  \nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n"
@@ -9024,13 +9024,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).PinMsg == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه تثبيت الرسائل* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه تثبيت الرسائل* ',"md",true)  
 end
 send(msg_chat_id,msg_id,"\n❍ تم تثبيت الرساله","md",true)
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
@@ -9043,13 +9043,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).PinMsg == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه تثبيت الرسائل* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه تثبيت الرسائل* ',"md",true)  
 end
 send(msg_chat_id,msg_id,"\n❍ تم الغاء تثبيت الرساله","md",true)
 LuaTele.unpinChatMessage(msg_chat_id) 
@@ -9061,13 +9061,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).PinMsg == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه تثبيت الرسائل* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه تثبيت الرسائل* ',"md",true)  
 end
 send(msg_chat_id,msg_id,"\n❍ تم الغاء تثبيت كل الرسائل","md",true)
 LuaTele.unpinAllChatMessages(msg_chat_id)
@@ -9079,7 +9079,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -9128,7 +9128,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if Redis:get(black.."Status:Link"..msg.chat_id) then
 Statuslink = '❬ ✔️ ❭' else Statuslink = '❬ ❌ ❭'
@@ -9191,7 +9191,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Text = "*\n❍اعدادات الجروب ".."\n🔏︙علامة ال (✔️) تعني مقفول".."\n🔓︙علامة ال (❌) تعني مفتوح*"
 local reply_markup = LuaTele.replyMarkup{
@@ -9231,7 +9231,7 @@ data = {
 {text = GetSetieng(msg_chat_id).lock_hash, data = '&'},{text = 'التاك : ', data =msg.sender.user_id..'/'.. 'Status_tags'},
 },
 {
-{text = GetSetieng(msg_chat_id).lock_bots, data = '&'},{text = 'البوتات : ', data =msg.sender.user_id..'/'.. 'Status_bots'},
+{text = GetSetieng(msg_chat_id).lock_bots, data = '&'},{text = 'الات : ', data =msg.sender.user_id..'/'.. 'Status_bots'},
 },
 {
 {text = '- التالي ... ', data =msg.sender.user_id..'/'.. 'NextSeting'}
@@ -9252,10 +9252,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local Info_Chats = LuaTele.getSupergroupFullInfo(msg_chat_id)
 local Get_Chat = LuaTele.getChat(msg_chat_id)
@@ -9283,7 +9283,7 @@ end
 if Get_Chat.permissions.can_send_polls then
 polls = '❬ ✔️ ❭' else polls = '❬ ❌ ❭'
 end
-local permissions = '*\n❍صلاحيات الجروب :\nــــــــــــــــــــــ❍ـــــــــــــــــــــ'..'\n❍ارسال الويب : '..web..'\n❍تغيير معلومات الجروب : '..info..'\n❍اضافه مستخدمين : '..invite..'\n❍تثبيت الرسائل : '..pin..'\n❍ارسال الميديا : '..media..'\n❍ارسال الرسائل : '..messges..'\n❍اضافه البوتات : '..other..'\n❍ارسال استفتاء : '..polls..'*\n\n'
+local permissions = '*\n❍صلاحيات الجروب :\nــــــــــــــــــــــ❍ـــــــــــــــــــــ'..'\n❍ارسال الويب : '..web..'\n❍تغيير معلومات الجروب : '..info..'\n❍اضافه مستخدمين : '..invite..'\n❍تثبيت الرسائل : '..pin..'\n❍ارسال الميديا : '..media..'\n❍ارسال الرسائل : '..messges..'\n❍اضافه الات : '..other..'\n❍ارسال استفتاء : '..polls..'*\n\n'
 local TextChat = '*\n❍معلومات الجروب :\nــــــــــــــــــــــ❍ـــــــــــــــــــــ'..' \n❍عدد الادمنيه : ❬ '..Info_Chats.administrator_count..' ❭\n❍عدد المحظورين : ❬ '..Info_Chats.banned_count..' ❭\n❍عدد الاعضاء : ❬ '..Info_Chats.member_count..' ❭\n❍عدد المقيديين : ❬ '..Info_Chats.restricted_count..' ❭\n❍اسم الجروب : ❬* ['..Get_Chat.title..']('..Info_Chats.invite_link.invite_link..')* ❭*'
 return send(msg_chat_id,msg_id, TextChat..permissions,"md",true)
 end
@@ -9294,10 +9294,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local Get_Chat = LuaTele.getChat(msg_chat_id)
 if Get_Chat.permissions.can_add_web_page_previews then
@@ -9346,7 +9346,7 @@ data = {
 {text = '- ارسال الرسائل : .'..messges, data =msg.sender.user_id..  '/messges'}, 
 },
 {
-{text = '- اضافه البوتات : '..other, data =msg.sender.user_id..  '/other'}, 
+{text = '- اضافه الات : '..other, data =msg.sender.user_id..  '/other'}, 
 },
 {
 {text = '- ارسال استفتاء : '..polls, data =msg.sender.user_id.. '/polls'}, 
@@ -9365,7 +9365,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Message_Reply.sender.user_id)
@@ -9373,7 +9373,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if Redis:sismember(black.."Dev:Groups",Message_Reply.sender.user_id) then
 dev = "المطور ،" else dev = "" end
@@ -9465,7 +9465,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local UserId_Info = LuaTele.searchPublicChat(UserName)
 if not UserId_Info.id then
@@ -9475,7 +9475,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 if Redis:sismember(black.."Dev:Groups",UserId_Info.id) then
 dev = "المطور ،" else dev = "" end
@@ -9567,13 +9567,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).SetAdmin == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
 end
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Message_Reply.sender.user_id)
@@ -9581,7 +9581,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 https.request("https://api.telegram.org/bot" .. Token .. "/promoteChatMember?chat_id=" .. msg_chat_id .. "&user_id=" ..Message_Reply.sender.user_id.."&can_invite_users=True")
 send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم وضع له لقب : "..CustomTitle).Reply,"md",true)  
@@ -9595,13 +9595,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).SetAdmin == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
 end
 local UserId_Info = LuaTele.searchPublicChat(UserName[1])
 if not UserId_Info.id then
@@ -9611,7 +9611,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName[1]:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 https.request("https://api.telegram.org/bot" .. Token .. "/promoteChatMember?chat_id=" .. msg_chat_id .. "&user_id=" ..UserId_Info.id.."&can_invite_users=True")
 send(msg_chat_id,msg_id,Reply_Status(UserId_Info.id,"❍ تم وضع له لقب : "..UserName[2]).Reply,"md",true)  
@@ -9633,13 +9633,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).SetAdmin == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
 end
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Message_Reply.sender.user_id)
@@ -9647,7 +9647,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 local SetAdmin = LuaTele.setChatMemberStatus(msg.chat_id,Message_Reply.sender.user_id,'administrator',{1 ,1, 0, 0, 0, 0, 0 , 0, 0, 0, 0, 0, ''})
 if SetAdmin.code == 3 then
@@ -9671,13 +9671,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).SetAdmin == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
 end
 local UserId_Info = LuaTele.searchPublicChat(UserName)
 if not UserId_Info.id then
@@ -9687,7 +9687,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 local SetAdmin = LuaTele.setChatMemberStatus(msg.chat_id,UserId_Info.id,'administrator',{1 ,1, 0, 0, 0, 0, 0 , 0, 0, 0, 0, 0, ''})
 
@@ -9711,13 +9711,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).SetAdmin == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
 end
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Message_Reply.sender.user_id)
@@ -9725,7 +9725,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 local SetAdmin = LuaTele.setChatMemberStatus(msg.chat_id,Message_Reply.sender.user_id,'administrator',{0 ,0, 0, 0, 0, 0, 0 ,0, 0})
 if SetAdmin.code == 400 then
@@ -9744,13 +9744,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).SetAdmin == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه اضافة مشرفين* ',"md",true)  
 end
 local UserId_Info = LuaTele.searchPublicChat(UserName)
 if not UserId_Info.id then
@@ -9760,7 +9760,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 local SetAdmin = LuaTele.setChatMemberStatus(msg.chat_id,UserId_Info.id,'administrator',{0 ,0, 0, 0, 0, 0, 0 ,0, 0})
 if SetAdmin.code == 400 then
@@ -9790,10 +9790,10 @@ elseif text == 'مسح' and msg.reply_to_message_id ~= 0 and msg.Admin then
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if GetInfoBot(msg).Delmsg == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حذف الرسائل* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حذف الرسائل* ',"md",true)  
 end
 LuaTele.deleteMessages(msg.chat_id,{[1]= msg.reply_to_message_id})
 LuaTele.deleteMessages(msg.chat_id,{[1]= msg_id})
@@ -9805,7 +9805,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Redis:Id:Groups"..msg.chat_id..""..msg.sender.user_id,240,true)  
 return send(msg_chat_id,msg_id,[[
@@ -9830,7 +9830,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Set:Id:Groups")
 return send(msg_chat_id,msg_id, '❍ تم ازالة كليشة الايدي العامه',"md",true)  
@@ -9843,7 +9843,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Redis:Id:Group"..msg.chat_id..""..msg.sender.user_id,240,true)  
 return send(msg_chat_id,msg_id,[[
@@ -9868,7 +9868,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Set:Id:Group"..msg.chat_id)
 return send(msg_chat_id,msg_id, '❍ تم ازالة كليشة الايدي ',"md",true)  
@@ -9883,7 +9883,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Devss:Groups") 
 if #Info_Members == 0 then
@@ -9899,7 +9899,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Dev:Groups") 
 if #Info_Members == 0 then
@@ -9915,7 +9915,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Supcreator:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -9931,7 +9931,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Supcreator:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -9947,7 +9947,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Creator:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -9963,7 +9963,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Manger:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -9979,7 +9979,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Admin:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -9995,7 +9995,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Special:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -10085,7 +10085,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."BanAll:Groups") 
 if #Info_Members == 0 then
@@ -10101,7 +10101,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."BanAll:Groups") 
 if #Info_Members == 0 then
@@ -10117,7 +10117,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."BanGroup:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -10133,7 +10133,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."SilentGroup:Group"..msg_chat_id) 
 if #Info_Members == 0 then
@@ -10149,13 +10149,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local Info_Members = LuaTele.getSupergroupMembers(msg_chat_id, "Recent", "*", 0, 200)
 local List_Members = Info_Members.members
@@ -10168,20 +10168,20 @@ end
 end
 return send(msg_chat_id,msg_id,"*❍ تم مسح {"..x.."} من المقيديين *","md",true)
 end
-if TextMsg == 'البوتات' then
+if TextMsg == 'الات' then
 if not msg.Manger then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(6)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 local Info_Members = LuaTele.getSupergroupMembers(msg_chat_id, "Bots", "*", 0, 200)
 local List_Members = Info_Members.members
@@ -10192,7 +10192,7 @@ if Ban_Bots.luatele == "ok" then
 x = x + 1
 end
 end
-return send(msg_chat_id,msg_id,"\n*❍عدد البوتات الموجوده : "..#List_Members.."\n❍ تم طرد ( "..x.." ) بوت من الجروب *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍عدد الات الموجوده : "..#List_Members.."\n❍ تم طرد ( "..x.." )  من الجروب *","md",true)  
 end
 if TextMsg == 'المطرودين' then
 if not msg.Manger then
@@ -10201,13 +10201,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 local Info_Members = LuaTele.getSupergroupMembers(msg_chat_id, "Banned", "*", 0, 200)
 x = 0
@@ -10227,13 +10227,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 if GetInfoBot(msg).BanUser == false then
-return send(msg_chat_id,msg_id,'\n*❍ البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+return send(msg_chat_id,msg_id,'\n*❍ ال ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
 end
 local Info_Members = LuaTele.searchChatMembers(msg_chat_id, "*", 200)
 local List_Members = Info_Members.members
@@ -10273,7 +10273,7 @@ return send(msg_chat_id,msg_id,'\n*❍ هاذا الامر يخص  '..Controller
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."List:Manager"..msg_chat_id.."")
 for k,v in pairs(list) do
@@ -10301,7 +10301,7 @@ if text == ("مسح الردود الانلاين") then
   end
   if ChannelJoin(msg) == false then
   local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
   end
   local list = Redis:smembers(black.."List:Manager:inline"..msg_chat_id.."")
   for k,v in pairs(list) do
@@ -10520,7 +10520,7 @@ if text == "حذف رد انلاين" then
   end
   if ChannelJoin(msg) == false then
   local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
   end
   local reply_markup = LuaTele.replyMarkup{
   type = 'inline',
@@ -10540,7 +10540,7 @@ if text == ("الردود الانلاين") then
   end
   if ChannelJoin(msg) == false then
   local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
   end
   local list = Redis:smembers(black.."List:Manager:inline"..msg_chat_id.."")
   text = "❍ قائمه الردود الانلاين \nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n"
@@ -10785,7 +10785,7 @@ if Redis:get(black.."kit_defullt:") == "true" then
   "متى اخر مره قريت قرآن؟ ",
   "كم صلاة فاتتك اليوم؟ ",
   "تفضل التيكن او السنقل؟ ",
-  "وش أفضل بوت برأيك؟ ",
+  "وش أفضل  برأيك؟ ",
 "كم لك بالتلي؟ ",
 "وش الي تفكر فيه الحين؟ ",
 "كيف تشوف الجيل ذا؟ ",
@@ -11023,7 +11023,7 @@ if text == 'قائمه الكت' then
     if ChannelJoin(msg) == false then
     local chinfo = Redis:get(black.."ch:admin")
     local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-    return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+    return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
     end
     local kit_list = Redis:smembers(black.."kit:") 
     if #kit_list == 0 then
@@ -11189,7 +11189,7 @@ if text == 'مسح قائمه الكت' then
     if ChannelJoin(msg) == false then
     local chinfo = Redis:get(black.."ch:admin")
     local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-    return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+    return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
     end
     local kit_list = Redis:smembers(black.."kit:") 
     if #kit_list == 0 then
@@ -11206,7 +11206,7 @@ return send(msg_chat_id,msg_id,'\n*❍ هاذا الامر يخص  '..Controller
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -11280,7 +11280,7 @@ return send(msg_chat_id,msg_id,'\n*❍ هاذا الامر يخص  '..Controller
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/uui9u'}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Set:Rd"..msg.sender.user_id..":"..msg_chat_id,true)
 local reply_markup = LuaTele.replyMarkup{
@@ -11299,7 +11299,7 @@ return send(msg_chat_id,msg_id,'\n*❍ هاذا الامر يخص  '..Controller
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/uui9u'}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Set:On"..msg.sender.user_id..":"..msg_chat_id,true)
 local reply_markup = LuaTele.replyMarkup{
@@ -11321,7 +11321,7 @@ return send(msg_chat_id,msg_id,'\n*❍ هاذا الامر يخص  '..Controller
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."List:Rd:Sudo")
 for k,v in pairs(list) do
@@ -11347,7 +11347,7 @@ return send(msg_chat_id,msg_id,'\n*❍ هاذا الامر يخص  '..Controller
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."List:Rd:Sudo")
 text = "\n❍ قائمة الردود العامه \nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n"
@@ -11388,7 +11388,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Broadcasting:Users" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 send(msg_chat_id,msg_id,[[
@@ -11412,7 +11412,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Broadcasting:Groups" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 send(msg_chat_id,msg_id,[[
@@ -11436,7 +11436,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Broadcasting:Groups:Pin" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 send(msg_chat_id,msg_id,[[
@@ -11460,7 +11460,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Broadcasting:Groups:Fwd" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 send(msg_chat_id,msg_id,"❍ ارسل لي التوجيه الان\n❍ليتم نشره في المجموعات","md",true)  
@@ -11477,7 +11477,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Broadcasting:Users:Fwd" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 send(msg_chat_id,msg_id,"❍ ارسل لي التوجيه الان\n❍ليتم نشره الى المشتركين","md",true)  
@@ -11490,7 +11490,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if not msg.Admin then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(7)..' * ',"md",true)  
@@ -11498,10 +11498,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local GetMemberStatus = LuaTele.getChatMember(msg_chat_id,Message_Reply.sender.user_id).status
 if GetMemberStatus.luatele == "chatMemberStatusRestricted" then
@@ -11534,10 +11534,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local UserId_Info = LuaTele.searchPublicChat(UserName)
 if not UserId_Info.id then
@@ -11547,7 +11547,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 local GetMemberStatus = LuaTele.getChatMember(msg_chat_id,UserId_Info.id).status
 if GetMemberStatus.luatele == "chatMemberStatusRestricted" then
@@ -11579,7 +11579,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 if not msg.Admin then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(7)..' * ',"md",true)  
@@ -11587,10 +11587,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local GetMemberStatus = LuaTele.getChatMember(msg_chat_id,Message_Reply.sender.user_id).status
 if GetMemberStatus.luatele == "chatMemberStatusRestricted" then
@@ -11627,10 +11627,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if msg.can_be_deleted_for_all_users == false then
-return send(msg_chat_id,msg_id,"\n*❍ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
+return send(msg_chat_id,msg_id,"\n*❍ عذرآ ال ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
 end
 local UserId_Info = LuaTele.searchPublicChat(UserName)
 if not UserId_Info.id then
@@ -11640,7 +11640,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 local GetMemberStatus = LuaTele.getChatMember(msg_chat_id,UserId_Info.id).status
 if GetMemberStatus.luatele == "chatMemberStatusRestricted" then
@@ -11677,7 +11677,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black..'GetTexting:Devblack'..msg_chat_id..':'..msg.sender.user_id,true)
 return send(msg_chat_id,msg_id,'❍ ارسل لي الكليشه الان')
@@ -11689,7 +11689,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black..'Texting:Devblack')
 return send(msg_chat_id,msg_id,'❍ تم حذف كليشه المطور')
@@ -11704,12 +11704,12 @@ local UserInfo = LuaTele.getUser(Sudo_Id)
 Name_User = UserInfo.first_name
 if photo then
 return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,
-'*❍ مطور البوت : *['..Name_User..'](tg://user?id='..UserInfo.id..')**', "md",true)
+'*❍ مطور ال : *['..Name_User..'](tg://user?id='..UserInfo.id..')**', "md",true)
 else
 return send(msg_chat_id,msg_id,
-'*❍ مطور البوت : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*',"md",true) 
+'*❍ مطور ال : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*',"md",true) 
 end
---return send(msg_chat_id,msg_id,'\n*❍ مطور البوت : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*',"md",true)  
+--return send(msg_chat_id,msg_id,'\n*❍ مطور ال : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*',"md",true)  
 end
 end
 ---زخرفة ----
@@ -11922,7 +11922,7 @@ end
 end
 end
 if text == "غنيلي" then
-local t = "اليك اغنيه عشوائيه من البوت"
+local t = "اليك اغنيه عشوائيه من ال"
 Num = math.random(8,83)
 Mhm = math.random(108,143)
 Mhhm = math.random(166,179)
@@ -11940,6 +11940,8 @@ keyboard.inline_keyboard = {
 local rep = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token.."/sendaudio?chat_id="..msg_chat_id.."&caption="..URL.escape(t).."&audio="..m.."&reply_to_message_id="..rep.."&parse_mode=Markdown&reply_markup="..JSON.encode(keyboard))
 end
+
+
 if text and text:match("(.*)(مين ضافني)(.*)") then
 local StatusMember = LuaTele.getChatMember(msg_chat_id,msg.sender.user_id).status.luatele
 if (StatusMember == "chatMemberStatusCreator") then
@@ -12207,7 +12209,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 local UserInfo = LuaTele.getUser(UserId_Info.id)
 local zz = Redis:get(black.."zz"..msg_chat_id..UserInfo.id)
@@ -12247,7 +12249,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Message_Reply.sender.user_id)
@@ -12494,7 +12496,7 @@ elseif tonumber(Redis:get(black..msg_chat_id..Message_Reply.sender.user_id.."mtz
     return send(msg_chat_id,msg_id,"تم طلاقكم وشوفو العيال هتبقا مع مين","md")
   end
 end
-if text == "بوت طلقني" then
+if text == " طلقني" then
   if not Redis:get(black..msg_chat_id..msg.sender.user_id.."mtzwga:") then 
   return send(msg_chat_id,msg_id,"انت ولا متجوز ولا متنيل عشان اطلقك","md")
   elseif Redis:get(black..msg_chat_id..msg.sender.user_id.."mtzwga:") then
@@ -12679,7 +12681,7 @@ return send(msg_chat_id,msg_id,'\n*❍ هاذا الامر يخص  '..Controller
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/uui9u'}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Set:Rd:mz"..msg.sender.user_id..":"..msg_chat_id,true)
 local reply_markup = LuaTele.replyMarkup{
@@ -12698,7 +12700,7 @@ return send(msg_chat_id,msg_id,'\n*❍ هاذا الامر يخص  '..Controller
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/uui9u'}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Set:On:mz"..msg.sender.user_id..":"..msg_chat_id,true)
 local reply_markup = LuaTele.replyMarkup{
@@ -12720,7 +12722,7 @@ return send(msg_chat_id,msg_id,'\n*❍ هاذا الامر يخص  '..Controller
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."List:Rd:Sudo:mz")
 for k,v in pairs(list) do
@@ -12746,7 +12748,7 @@ return send(msg_chat_id,msg_id,'\n*❍ هاذا الامر يخص  '..Controller
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."List:Rd:Sudo:mz")
 text = "\n❍ قائمة الردود المميزه \nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n"
@@ -12840,7 +12842,7 @@ if text == ("مسح الردود الانلاين العامه") then
   end
   if ChannelJoin(msg) == false then
   local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
   end
   local list = Redis:smembers(black.."List:Manager:inline3am")
   for k,v in pairs(list) do
@@ -13066,7 +13068,7 @@ if text == "حذف رد انلاين عام" then
   end
   if ChannelJoin(msg) == false then
   local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
   end
   local reply_markup = LuaTele.replyMarkup{
   type = 'inline',
@@ -13086,7 +13088,7 @@ if text == ("الردود الانلاين العامه") then
   end
   if ChannelJoin(msg) == false then
   local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+  return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
   end
   local list = Redis:smembers(black.."List:Manager:inline3am")
   text = "❍ قائمه الردود الانلاين \nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n"
@@ -13125,7 +13127,7 @@ end
 local txx = text:match("^حظر جروب (.*)$")
 if txx:match("^-100(%d+)$") then
 Redis:sadd(black..'ban:online',txx)
-send(msg_chat_id,msg_id,'\n❍ تم حظر الجروب من البوت ',"md",true)  
+send(msg_chat_id,msg_id,'\n❍ تم حظر الجروب من ال ',"md",true)  
 else
 send(msg_chat_id,msg_id,'\n❍ اكتب ايدي المجموعه بشكل صحيح ',"md",true)  
 end
@@ -13137,7 +13139,7 @@ end
 local txx = text:match("^الغاء حظر جروب (.*)$")
 if txx:match("^-100(%d+)$") then
 Redis:srem(black..'ban:online',txx)
-send(msg_chat_id,msg_id,'\n❍ تم الغاء حظر الجروب من البوت ',"md",true)  
+send(msg_chat_id,msg_id,'\n❍ تم الغاء حظر الجروب من ال ',"md",true)  
 else
 send(msg_chat_id,msg_id,'\n❍ اكتب ايدي المجموعه بشكل صحيح ',"md",true)  
 end
@@ -13804,7 +13806,7 @@ local bank_users = Redis:smembers(black.."booob")
 if #bank_users == 0 then
 return send(msg.chat_id,msg.id,"•  لا يوجد حسابات في البنك","md",true)
 end
-top_mony = "توب اغنى 10 شخص في البوت :\n\n"
+top_mony = "توب اغنى 10 شخص في ال :\n\n"
 mony_list = {}
 for k,v in pairs(bank_users) do
 local mony = Redis:get(black.."boob"..v)
@@ -13901,7 +13903,7 @@ if #bank_users == 0 then
 return send(msg.chat_id,msg.id,"•  لا يوجد حسابات في البنك","md",true)
 end
 local bank_users = Redis:smembers(black.."booob")
-top_mony = "توب اغنى 10 شخص في البوت :\n\n"
+top_mony = "توب اغنى 10 شخص في ال :\n\n"
 mony_list = {}
 for k,v in pairs(bank_users) do
 local mony = Redis:get(black.."boob"..v)
@@ -13962,7 +13964,7 @@ end
 local Remsg = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Remsg.sender.user_id)
 if UserInfo and UserInfo.type and UserInfo.type.Merotele == "userTypeBot" then
-send(msg.chat_id,msg.id,"\n*• البوت ماعنده حساب بالبنك *","md",true)  
+send(msg.chat_id,msg.id,"\n*• ال ماعنده حساب بالبنك *","md",true)  
 return false
 end
 if Remsg.sender.user_id == msg.sender.user_id then
@@ -14065,7 +14067,7 @@ end
 local Remsg = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Remsg.sender.user_id)
 if UserInfo and UserInfo.type and UserInfo.type.Merotele == "userTypeBot" then
-send(msg.chat_id,msg.id,"\n*• البوت ماعنده حساب بالبنك *","md",true)  
+send(msg.chat_id,msg.id,"\n*• ال ماعنده حساب بالبنك *","md",true)  
 return false
 end
 if Remsg.sender.user_id == msg.sender.user_id then
@@ -14470,7 +14472,7 @@ data = {
 }
 return send(msg_chat_id,msg_id,'*عيب ياوسخ 🙄💔*',"md",false, false, false, false, reply_markup)
 end
-if text == 'بوتي' or text == 'يا بوتي' then
+if text == 'ي' or text == 'يا ي' then
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
@@ -14479,7 +14481,7 @@ data = {
 },
 }
 }
-return send(msg_chat_id,msg_id,'روح وعقل بوتك 🥺💔',"md",false, false, false, false, reply_markup)
+return send(msg_chat_id,msg_id,'روح وعقل ك 🥺💔',"md",false, false, false, false, reply_markup)
 end
 if text == 'متيجي' or text == 'تع' then
 local reply_markup = LuaTele.replyMarkup{
@@ -14686,7 +14688,7 @@ return send(msg_chat_id,msg_id,'\n*❍ هاذا الامر يخص  '..Controller
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/J_F_A_I'}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."List:Manager"..msg_chat_id.."")
 if #list == 0 then
@@ -14721,7 +14723,7 @@ end
 if text == "استوري" then
 Rrr = math.random(4,50)
 local m = "https://t.me/Qapplu/"..Rrr..""
-local t = "اليك استوري عشوائي من البوت 🖇️🌚"
+local t = "اليك استوري عشوائي من ال 🖇️🌚"
 local rep = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token.."/sendaudio?chat_id="..msg_chat_id.."&caption="..URL.escape(t).."&audio="..m.."&reply_to_message_id="..rep.."&parse_mode=Markdown")
 end
@@ -14834,7 +14836,7 @@ data = {
 },
 }
 }
-send(msg.chat_id,msg.id,"• اهلا بك في بوت الحاسبه\n• welcome to calculator","md",true, false, false, true, start_mrkup)
+send(msg.chat_id,msg.id,"• اهلا بك في  الحاسبه\n• welcome to calculator","md",true, false, false, true, start_mrkup)
 return false 
 end
 if text == "استبدال كلمه" then
@@ -15136,7 +15138,7 @@ if UserId_Info.type.is_channel == true then
 return send(msg_chat_id,msg_id,"\n• عذرآ لا تستطيع استخدام معرف قناة او جروب ","md",true)  
 end
 if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
-return send(msg_chat_id,msg_id,"\n• عذرآ لا تستطيع استخدام معرف البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n• عذرآ لا تستطيع استخدام معرف ال ","md",true)  
 end
 SuperCreator = Redis:sismember(black.."SuperCreator:Group"..msg.chat_id,UserId_Info.id) 
 Creator = Redis:sismember(black.."Creator:Group"..msg.chat_id,UserId_Info.id)
@@ -15348,7 +15350,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -15374,14 +15376,14 @@ data = {
 }
 }
 return send(msg_chat_id,msg_id, [[*
-❍ توجد ➢ 6 اوامر في البوت
+❍ توجد ➢ 6 اوامر في ال
 ــــــــــــــــــــــ❍ـــــــــــــــــــــ
 ❍ 1 ➢ اوامر الحمايه
 ❍ 2 ➢ اوامر الادمنيه
 ❍ 3 ➢ اوامر المدراء
 ❍ 4 ➢ اوامر المنشئين
-❍ 5 ➢ اوامر مطورين البوت
-❍ 6 ➢ اوامر التسلية البوت
+❍ 5 ➢ اوامر مطورين ال
+❍ 6 ➢ اوامر التسلية ال
 *]],"md",false, false, false, false, reply_markup)
 elseif text == 'م1' then
 if not msg.Admin then
@@ -15390,7 +15392,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -15411,7 +15413,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -15432,7 +15434,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -15453,7 +15455,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -15474,7 +15476,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -15495,7 +15497,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -15516,7 +15518,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -15540,7 +15542,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 print('Chat Id : '..msg_chat_id)
 print('User Id : '..msg_user_send_id)
@@ -15575,29 +15577,29 @@ echo '*------------------------------\n*✠┊✠┊⊱ { مـده تـشغيـ�
 ]]):read('*all'),"md")
 end
 
-if text == "تغيير اسم البوت" then 
+if text == "تغيير اسم ال" then 
 if not msg.ControllerBot then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(1)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Change:Name:Bot"..msg.sender.user_id,300,true) 
 return send(msg_chat_id,msg_id,"❍ ارسل لي الاسم الان ","md",true)  
 end
-if text == "حذف اسم البوت" then 
+if text == "حذف اسم ال" then 
 if not msg.ControllerBot then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(1)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Name:Bot") 
-return send(msg_chat_id,msg_id,"❍ تم حذف اسم البوت ","md",true)   
+return send(msg_chat_id,msg_id,"❍ تم حذف اسم ال ","md",true)   
 end
 if text == (Redis:get(black.."Name:Bot") or "بلاك") then
 if Redis:get(black.."name bot type : ") == "photo" then
@@ -15651,7 +15653,7 @@ if Redis:get(black.."name bot type : ") == "photo" then
 end
 ----
 ----
-if text == "بوت" then
+if text == "" then
 if Redis:get(black.."name bot type : ") == "photo" then
   
     local photo = LuaTele.getUserProfilePhotos(black)
@@ -15710,7 +15712,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."Num:User:Pv")   
 local x = 0
@@ -15723,7 +15725,7 @@ Redis:srem(black..'Num:User:Pv',v)
 end
 end
 if x ~= 0 then
-return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' }\n❍ تم العثور على { '..x..' } من المشتركين حاظرين البوت*',"md")
+return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' }\n❍ تم العثور على { '..x..' } من المشتركين حاظرين ال*',"md")
 else
 return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' }\n❍ لم يتم العثور على وهميين*',"md")
 end
@@ -15735,7 +15737,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."ChekBotAdd")   
 local x = 0
@@ -15745,7 +15747,7 @@ if Get_Chat.id then
 local statusMem = LuaTele.getChatMember(Get_Chat.id,black)
 if statusMem.status.luatele == "chatMemberStatusMember" then
 x = x + 1
-send(Get_Chat.id,0,'*❍ البوت عضو في الجروب سوف اغادر ويمكنك تفعيلي مره اخره *',"md")
+send(Get_Chat.id,0,'*❍ ال عضو في الجروب سوف اغادر ويمكنك تفعيلي مره اخره *',"md")
 Redis:srem(black..'ChekBotAdd',Get_Chat.id)
 local keys = Redis:keys(black..'*'..Get_Chat.id)
 for i = 1, #keys do
@@ -15764,7 +15766,7 @@ LuaTele.leaveChat(v)
 end
 end
 if x ~= 0 then
-return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' } للمجموعات \n❍ تم العثور على { '..x..' } مجموعات البوت ليس ادمن \n❍ تم تعطيل الجروب ومغادره البوت من الوهمي *',"md")
+return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' } للمجموعات \n❍ تم العثور على { '..x..' } مجموعات ال ليس ادمن \n❍ تم تعطيل الجروب ومغادره ال من الوهمي *',"md")
 else
 return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' } للمجموعات \n❍ لا توجد مجموعات وهميه*',"md")
 end
@@ -15897,7 +15899,7 @@ local texting = {"اخر افلام شاهدتها",
   "متى اخر مره قريت قرآن؟ ",
   "كم صلاة فاتتك اليوم؟ ",
   "تفضل التيكن او السنقل؟ ",
-  "وش أفضل بوت برأيك؟ ",
+  "وش أفضل  برأيك؟ ",
 "كم لك بالتلي؟ ",
 "وش الي تفكر فيه الحين؟ ",
 "كيف تشوف الجيل ذا؟ ",
@@ -16403,7 +16405,7 @@ data = {
 }
 return send(msg_chat_id,msg_id, [[*
 ❍ لعبة المحيبس هي لعبة الحظ 
-❍ جرب حظك ويه البوت واتونس 
+❍ جرب حظك ويه ال واتونس 
 ❍ كل ما عليك هوا الضغط على احدى العضمات في الازرار
 *]],"md",false, false, false, false, reply_markup)
 end
@@ -16500,7 +16502,7 @@ if text and text:match("^اضف نقاط (%d+)$") and msg.reply_to_message_id ~=
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Admin then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(7)..' * ',"md",true)  
@@ -16511,7 +16513,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 Redis:incrby(black.."Num:Add:Games"..msg.chat_id..Message_Reply.sender.user_id, text:match("^اضف نقاط (%d+)$"))  
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم اضافه له  "..text:match("^اضف نقاط (%d+)$").." من النقاط").Reply,"md",true)  
@@ -16520,7 +16522,7 @@ if text and text:match("^اضف رسائل (%d+)$") and msg.reply_to_message_id 
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 if not msg.Admin then
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(7)..' * ',"md",true)  
@@ -16531,7 +16533,7 @@ if UserInfo.message == "Invalid user ID" then
 return send(msg_chat_id,msg_id,"\n❍ عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
 end
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
+return send(msg_chat_id,msg_id,"\n❍ عذرآ لا تستطيع استخدام الامر على ال ","md",true)  
 end
 Redis:incrby(black.."Num:Message:User"..msg.chat_id..":"..Message_Reply.sender.user_id, text:match("^اضف رسائل (%d+)$"))  
 return send(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender.user_id,"❍ تم اضافه له  "..text:match("^اضف رسائل (%d+)$").."  من الرسائل").Reply,"md",true)  
@@ -16552,7 +16554,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Get:Reides:Commands:Group"..msg_chat_id..":"..'تعط','تعطيل الايدي بالصوره')
 Redis:set(black.."Get:Reides:Commands:Group"..msg_chat_id..":"..'تفع','تفعيل الايدي بالصوره')
@@ -16635,7 +16637,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 print('Chat Id : '..msg_chat_id)
 print('User Id : '..msg_user_send_id)
@@ -16757,13 +16759,13 @@ Redis:sadd(black..'Num:User:Pv',msg.sender.user_id)
 if not msg.Devss then
 local photo = LuaTele.getUserProfilePhotos(black)
 if not Redis:get(black.."Start:Bot") then
-local CmdStart = '*\n❍ أهلآ بك في بوت '..(Redis:get(black.."Name:Bot") or "بلاك")..
-'\n❍ اختصاص البوت حماية المجموعات'..
-'\n❍ لتفعيل البوت عليك اتباع مايلي ...'..
-'\n❍ اضف البوت الى مجموعتك'..
+local CmdStart = '*\n❍ أهلآ بك في  '..(Redis:get(black.."Name:Bot") or "بلاك")..
+'\n❍ اختصاص ال حماية المجموعات'..
+'\n❍ لتفعيل ال عليك اتباع مايلي ...'..
+'\n❍ اضف ال الى مجموعتك'..
 '\n❍ ارفعه ادمن مشرف'..
 '\n❍ ارسل كلمة { تفعيل } ليتم تفعيل الجروب'..
-'\n❍ مطور البوت ➢ {'..UserSudo..'}*'
+'\n❍ مطور ال ➢ {'..UserSudo..'}*'
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
@@ -16803,7 +16805,7 @@ data = {
 {text = 'تعيين رمز السورس ❍',type = 'text'},{text = 'حذف رمز السورس ❍',type = 'text'},
 },
 {
-{text = 'تفعيل البوت بصوره ❍',type = 'text'},{text = 'تعطيل البوت بصوره ❍',type = 'text'},
+{text = 'تفعيل ال بصوره ❍',type = 'text'},{text = 'تعطيل ال بصوره ❍',type = 'text'},
 },
 {
 {text = 'تفعيل التواصل ❍',type = 'text'},{text = 'تعطيل التواصل ❍', type = 'text'},
@@ -16812,7 +16814,7 @@ data = {
 {text = 'تفعيل الاشتراك الاجباري ❍',type = 'text'},{text = 'تعطيل الاشتراك الاجباري ❍', type = 'text'},
 },
 {
-{text = 'تفعيل البوت الخدمي ❍',type = 'text'},{text = 'تعطيل البوت الخدمي ❍', type = 'text'},
+{text = 'تفعيل ال الخدمي ❍',type = 'text'},{text = 'تعطيل ال الخدمي ❍', type = 'text'},
 },
 {
 {text = 'اذاعه للمجموعات ❍',type = 'text'},{text = 'اذاعه خاص ❍', type = 'text'},
@@ -16830,7 +16832,7 @@ data = {
 {text = 'مسح المطورين الثانويين ❍',type = 'text'},{text = 'مسح المطورين ❍',type = 'text'},{text = 'مسح قائمه العام ❍', type = 'text'},
 },
 {
-{text = 'تغيير اسم البوت ❍',type = 'text'},{text = 'حذف اسم البوت ❍', type = 'text'},
+{text = 'تغيير اسم ال ❍',type = 'text'},{text = 'حذف اسم ال ❍', type = 'text'},
 },
 {
 {text = 'الاحصائيات ❍',type = 'text'},
@@ -16873,19 +16875,19 @@ data = {
 return send(msg_chat_id,msg_id,'❍اهلا بك عزيزي المطور ', 'md', false, false, false, false, reply_markup)
 end
 end
-if text == "تفعيل البوت بصوره ❍" then
+if text == "تفعيل ال بصوره ❍" then
   if not msg.Devss then
   send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(2)..' * ',"md",true)  
   end
   Redis:set(black.."name bot type : ", "photo")
-  send(msg_chat_id,msg_id,'\n*❍ تم تفعيل رد البوت بصوره * ',"md",true)  
+  send(msg_chat_id,msg_id,'\n*❍ تم تفعيل رد ال بصوره * ',"md",true)  
   end
-if text == "تعطيل البوت بصوره ❍" then
+if text == "تعطيل ال بصوره ❍" then
 if not msg.Devss then
 send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(2)..' * ',"md",true)  
 end
 Redis:set(black.."name bot type : ", "text")
-send(msg_chat_id,msg_id,'\n*❍ تم تعطيل رد البوت بصوره * ',"md",true)  
+send(msg_chat_id,msg_id,'\n*❍ تم تعطيل رد ال بصوره * ',"md",true)  
 end
 if text == 'تنظيف المشتركين ❍' then
 if not msg.Devss then 
@@ -16894,7 +16896,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."Num:User:Pv")   
 local x = 0
@@ -16907,7 +16909,7 @@ Redis:srem(black..'Num:User:Pv',v)
 end
 end
 if x ~= 0 then
-return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' }\n❍ تم العثور على { '..x..' } من المشتركين حاظرين البوت*',"md")
+return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' }\n❍ تم العثور على { '..x..' } من المشتركين حاظرين ال*',"md")
 else
 return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' }\n❍ لم يتم العثور على وهميين*',"md")
 end
@@ -16919,7 +16921,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."ChekBotAdd")   
 local x = 0
@@ -16929,7 +16931,7 @@ if Get_Chat.id then
 local statusMem = LuaTele.getChatMember(Get_Chat.id,black)
 if statusMem.status.luatele == "chatMemberStatusMember" then
 x = x + 1
-send(Get_Chat.id,0,'*❍ البوت عضو في الجروب سوف اغادر ويمكنك تفعيلي مره اخره *',"md")
+send(Get_Chat.id,0,'*❍ ال عضو في الجروب سوف اغادر ويمكنك تفعيلي مره اخره *',"md")
 Redis:srem(black..'ChekBotAdd',Get_Chat.id)
 local keys = Redis:keys(black..'*'..Get_Chat.id)
 for i = 1, #keys do
@@ -16948,7 +16950,7 @@ LuaTele.leaveChat(v)
 end
 end
 if x ~= 0 then
-return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' } للمجموعات \n❍ تم العثور على { '..x..' } مجموعات البوت ليس ادمن \n❍ تم تعطيل الجروب ومغادره البوت من الوهمي *',"md")
+return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' } للمجموعات \n❍ تم العثور على { '..x..' } مجموعات ال ليس ادمن \n❍ تم تعطيل الجروب ومغادره ال من الوهمي *',"md")
 else
 return send(msg_chat_id,msg_id,'*❍ العدد الكلي { '..#list..' } للمجموعات \n❍ لا توجد مجموعات وهميه*',"md")
 end
@@ -16960,7 +16962,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Change:Start:Bot"..msg.sender.user_id,300,true) 
 return send(msg_chat_id,msg_id,"❍ ارسل لي كليشه Start الان ","md",true)  
@@ -16994,34 +16996,34 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Start:Bot") 
 return send(msg_chat_id,msg_id,"❍ تم حذف كليشه Start ","md",true)   
 end
-if text == 'تغيير اسم البوت ❍' then 
+if text == 'تغيير اسم ال ❍' then 
 if not msg.Devss then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(2)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Change:Name:Bot"..msg.sender.user_id,300,true) 
 return send(msg_chat_id,msg_id,"❍ ارسل لي الاسم الان ","md",true)  
 end
-if text == 'حذف اسم البوت ❍' then 
+if text == 'حذف اسم ال ❍' then 
 if not msg.Devss then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(2)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."Name:Bot") 
-return send(msg_chat_id,msg_id,"❍ تم حذف اسم البوت ","md",true)   
+return send(msg_chat_id,msg_id,"❍ تم حذف اسم ال ","md",true)   
 end
 if text and text:match("^تعين عدد الاعضاء (%d+)$") then
 if not msg.Devss then 
@@ -17031,10 +17033,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black..'Num:Add:Bot',text:match("تعين عدد الاعضاء (%d+)$") ) 
-send(msg_chat_id,msg_id,'*❍ تم تعيين عدد اعضاء تفعيل البوت اكثر من : '..text:match("تعين عدد الاعضاء (%d+)$")..' عضو *',"md",true)  
+send(msg_chat_id,msg_id,'*❍ تم تعيين عدد اعضاء تفعيل ال اكثر من : '..text:match("تعين عدد الاعضاء (%d+)$")..' عضو *',"md",true)  
 elseif text =='الاحصائيات ❍' then 
 if not msg.Devss then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(2)..' * ',"md",true)  
@@ -17042,9 +17044,9 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
-send(msg_chat_id,msg_id,'*❍عدد احصائيات البوت الكامله \nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n❍عدد المجموعات : '..(Redis:scard(black..'ChekBotAdd') or 0)..'\n❍عدد المشتركين : '..(Redis:scard(black..'Num:User:Pv') or 0)..'*',"md",true)  
+send(msg_chat_id,msg_id,'*❍عدد احصائيات ال الكامله \nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n❍عدد المجموعات : '..(Redis:scard(black..'ChekBotAdd') or 0)..'\n❍عدد المشتركين : '..(Redis:scard(black..'Num:User:Pv') or 0)..'*',"md",true)  
 end
 if text == 'تغير كليشه المطور ❍' then
 if not msg.Devss then 
@@ -17053,7 +17055,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black..'GetTexting:Devblack'..msg_chat_id..':'..msg.sender.user_id,true)
 return send(msg_chat_id,msg_id,'❍ ارسل لي الكليشه الان')
@@ -17065,7 +17067,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black..'Texting:Devblack')
 return send(msg_chat_id,msg_id,'❍ تم حذف كليشه المطور')
@@ -17077,7 +17079,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Set:Rd"..msg.sender.user_id..":"..msg_chat_id,true)
 return send(msg_chat_id,msg_id,"❍ ارسل الان الكلمه لاضافتها في الردود العامه ","md",true)  
@@ -17089,7 +17091,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."Set:On"..msg.sender.user_id..":"..msg_chat_id,true)
 return send(msg_chat_id,msg_id,"❍ ارسل الان الكلمه لحذفها من الردود العامه","md",true)  
@@ -17101,7 +17103,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Broadcasting:Users" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 send(msg_chat_id,msg_id,[[
@@ -17122,7 +17124,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Broadcasting:Groups" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 send(msg_chat_id,msg_id,[[
@@ -17143,7 +17145,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Broadcasting:Groups:Pin" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 send(msg_chat_id,msg_id,[[
@@ -17164,7 +17166,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Broadcasting:Groups:Fwd" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 send(msg_chat_id,msg_id,"❍ ارسل لي التوجيه الان\n❍ليتم نشره في المجموعات","md",true)  
@@ -17178,7 +17180,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:setex(black.."Broadcasting:Users:Fwd" .. msg_chat_id .. ":" .. msg.sender.user_id, 600, true) 
 send(msg_chat_id,msg_id,"❍ ارسل لي التوجيه الان\n❍ليتم نشره الى المشتركين","md",true)  
@@ -17192,7 +17194,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."List:Rd:Sudo")
 text = "\n❍ قائمة الردود العامه \nــــــــــــــــــــــ❍ـــــــــــــــــــــ\n"
@@ -17230,7 +17232,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local list = Redis:smembers(black.."List:Rd:Sudo")
 for k,v in pairs(list) do
@@ -17257,7 +17259,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Dev:Groups") 
 if #Info_Members == 0 then
@@ -17273,7 +17275,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Devss:Groups") 
 if #Info_Members == 0 then
@@ -17289,7 +17291,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."BanAll:Groups") 
 if #Info_Members == 0 then
@@ -17298,17 +17300,17 @@ end
 Redis:del(black.."BanAll:Groups") 
 return send(msg_chat_id,msg_id,"*❍ تم مسح {"..#Info_Members.."} من المحظورين عام *","md",true)
 end
-if text == 'تعطيل البوت الخدمي ❍' then
+if text == 'تعطيل ال الخدمي ❍' then
 if not msg.Devss then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(2)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."BotFree") 
-return send(msg_chat_id,msg_id,"❍ تم تعطيل البوت الخدمي ","md",true)
+return send(msg_chat_id,msg_id,"❍ تم تعطيل ال الخدمي ","md",true)
 end
 if text == 'تعطيل التواصل ❍' then
 if not msg.Devss then 
@@ -17317,22 +17319,22 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:del(black.."TwaslBot") 
-return send(msg_chat_id,msg_id,"❍ تم تعطيل التواصل داخل البوت ","md",true)
+return send(msg_chat_id,msg_id,"❍ تم تعطيل التواصل داخل ال ","md",true)
 end
-if text == 'تفعيل البوت الخدمي ❍' then
+if text == 'تفعيل ال الخدمي ❍' then
 if not msg.Devss then 
 return send(msg_chat_id,msg_id,'\n*❍ هذا الامر يخص  '..Controller_Num(2)..' * ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."BotFree",true) 
-return send(msg_chat_id,msg_id,"❍ تم تفعيل البوت الخدمي ","md",true)
+return send(msg_chat_id,msg_id,"❍ تم تفعيل ال الخدمي ","md",true)
 end
 if text == "تعطيل الاشتراك الاجباري لكل الاعضاء ❍" then
 if not msg.Devss then 
@@ -17342,7 +17344,7 @@ if not Redis:get(black.."chmembers") then
 return send(msg_chat_id,msg_id,'\n*❍ الامر معطل بالفعل* ',"md",true)  
 end
 Redis:del(black.."chmembers")
-send(msg_chat_id,msg_id,'\n*❍ تم تعطيل وضع الاشتراك الاجباري لكل الاعضاء اصبح عند استخدام اوامر البوت فقط* ',"md",true)  
+send(msg_chat_id,msg_id,'\n*❍ تم تعطيل وضع الاشتراك الاجباري لكل الاعضاء اصبح عند استخدام اوامر ال فقط* ',"md",true)  
 end
 if text == "تفعيل الاشتراك الاجباري لكل الاعضاء ❍" then
 if not msg.Devss then 
@@ -17450,10 +17452,10 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(black.."TwaslBot",true) 
-return send(msg_chat_id,msg_id,"❍ تم تفعيل التواصل داخل البوت ","md",true)
+return send(msg_chat_id,msg_id,"❍ تم تفعيل التواصل داخل ال ","md",true)
 end
 if text == 'قائمه العام ❍' then
 if not msg.Devss then 
@@ -17462,7 +17464,7 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."BanAll:Groups") 
 if #Info_Members == 0 then
@@ -17490,13 +17492,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Dev:Groups") 
 if #Info_Members == 0 then
 return send(msg_chat_id,msg_id,"❍ لا يوجد مطورين حاليا , ","md",true)  
 end
-ListMembers = '\n*❍ قائمه مطورين البوت \n ــــــــــــــــــــــ❍ـــــــــــــــــــــ*\n'
+ListMembers = '\n*❍ قائمه مطورين ال \n ــــــــــــــــــــــ❍ـــــــــــــــــــــ*\n'
 for k, v in pairs(Info_Members) do
 local UserInfo = LuaTele.getUser(v)
 if UserInfo and UserInfo.username and UserInfo.username ~= "" then
@@ -17517,13 +17519,13 @@ end
 if ChannelJoin(msg) == false then
 local chinfo = Redis:get(black.."ch:admin")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = chinfo}, },}}
-return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+return send(msg.chat_id,msg.id,'*\n❍ عليك الاشتراك في قناة ال لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 local Info_Members = Redis:smembers(black.."Devss:Groups") 
 if #Info_Members == 0 then
 return send(msg_chat_id,msg_id,"❍ لا يوجد مطورين حاليا , ","md",true)  
 end
-ListMembers = '\n*❍ قائمه مطورين البوت \n ــــــــــــــــــــــ❍ـــــــــــــــــــــ*\n'
+ListMembers = '\n*❍ قائمه مطورين ال \n ــــــــــــــــــــــ❍ـــــــــــــــــــــ*\n'
 for k, v in pairs(Info_Members) do
 local UserInfo = LuaTele.getUser(v)
 if UserInfo and UserInfo.username and UserInfo.username ~= "" then
@@ -17556,15 +17558,15 @@ if Message_Get.forward_info then
 local Info_User = Redis:get(black.."Twasl:UserId"..Message_Get.forward_info.date) or 46899864
 if text == 'حظر' then
 Redis:sadd(black..'BaN:In:Tuasl',Info_User)  
-return send(msg_chat_id,msg_id,Reply_Status(Info_User,'❍ تم حظره من تواصل البوت ').Reply,"md",true)  
+return send(msg_chat_id,msg_id,Reply_Status(Info_User,'❍ تم حظره من تواصل ال ').Reply,"md",true)  
 end 
 if text =='الغاء الحظر' or text =='الغاء حظر' then
 Redis:srem(black..'BaN:In:Tuasl',Info_User)  
-return send(msg_chat_id,msg_id,Reply_Status(Info_User,'❍ تم الغاء حظره من تواصل البوت ').Reply,"md",true)  
+return send(msg_chat_id,msg_id,Reply_Status(Info_User,'❍ تم الغاء حظره من تواصل ال ').Reply,"md",true)  
 end 
 local ChatAction = LuaTele.sendChatAction(Info_User,'Typing')
 if not Info_User or ChatAction.message == "USER_IS_BLOCKED" then
-send(msg_chat_id,msg_id,Reply_Status(Info_User,'❍قام بحظر البوت لا استطيع ارسال رسالتك ').Reply,"md",true)  
+send(msg_chat_id,msg_id,Reply_Status(Info_User,'❍قام بحظر ال لا استطيع ارسال رسالتك ').Reply,"md",true)  
 end
 if msg.content.video_note then
 LuaTele.sendVideoNote(Info_User, 0, msg.content.video_note.video.remote.id)
@@ -17605,7 +17607,7 @@ if data and data.luatele and data.luatele == "updateNewInlineQuery" then
 
 local Text = data.query 
 if Text == '' then
-local input_message_content = {message_text = " ٭ اهلا بك\n ٭ لارسال الهمسه اكتب يوزر البوت + الهمسه + يوزر العضو اللي هتعمله همسه \n ٭ مثال  @M_77bot هلا @V_P_E"}	
+local input_message_content = {message_text = " ٭ اهلا بك\n ٭ لارسال الهمسه اكتب يوزر ال + الهمسه + يوزر العضو اللي هتعمله همسه \n ٭ مثال  @M_77bot هلا @V_P_E"}	
 local resuult = {{
 type = 'article',
 id = math.random(1,64),
@@ -17670,7 +17672,7 @@ Redis:del(black.."Command:List:Group"..'-100'..data.supergroup.id)
 for i = 1, #keys do 
 Redis:del(keys[i])
 end
-return send(Sudo_Id,0,'*\n❍ تم طرد البوت من جروب جديده \n❍اسم الجروب : '..Get_Chat.title..'\n❍ايدي الجروب :*`-100'..data.supergroup.id..'`\n❍ تم مسح جميع البيانات المتعلقه بالجروب',"md")
+return send(Sudo_Id,0,'*\n❍ تم طرد ال من جروب جديده \n❍اسم الجروب : '..Get_Chat.title..'\n❍ايدي الجروب :*`-100'..data.supergroup.id..'`\n❍ تم مسح جميع البيانات المتعلقه بالجروب',"md")
 end
 elseif data and data.luatele and data.luatele == "updateMessageSendSucceeded" then
 local msg = data.message
@@ -17746,12 +17748,12 @@ if data.message.content.luatele == "messageChatJoinByLink" and Redis:get(black..
     type = 'inline',
     data = {
     {
-    {text = ' انا لست بوت ', data = data.message.sender.user_id..'/UnKed'},
+    {text = ' انا لست  ', data = data.message.sender.user_id..'/UnKed'},
     },
     }
     } 
     LuaTele.setChatMemberStatus(data.message.chat_id,data.message.sender.user_id,'restricted',{1,0,0,0,0,0,0,0,0})
-    return send(data.message.chat_id, data.message.id, '❍ عليك اختيار انا لست بوت لتخطي نظام التحقق', 'md',false, false, false, false, reply_markup)
+    return send(data.message.chat_id, data.message.id, '❍ عليك اختيار انا لست  لتخطي نظام التحقق', 'md',false, false, false, false, reply_markup)
     end
 File_Bot_Run(data.message,data.message)
 elseif data and data.luatele and data.luatele == "updateMessageEdited" then
@@ -17938,7 +17940,7 @@ if Text and Text:match('(%d+)rest') then
 local sendrr = Text:match('(%d+)rest')
 if tonumber(IdUser) == tonumber(sendrr) then
 Redis:del(black..IdUser..ChatId.."num")
-edit(ChatId,Msg_id,"• اهلا بك في بوت الحاسبه\n• welcome to calculator" , 'html', false, false, calc_markup)
+edit(ChatId,Msg_id,"• اهلا بك في  الحاسبه\n• welcome to calculator" , 'html', false, false, calc_markup)
 else
 LuaTele.answerCallbackQuery(data.id, "• الامر لا يخصك", true)
 end
@@ -18125,7 +18127,7 @@ data = {
 }
 local TextMahibesAgane = [[*
 ❍ لعبة المحيبس هي لعبة الحظ 
-❍ جرب حظك ويه البوت واتونس 
+❍ جرب حظك ويه ال واتونس 
 ❍ كل ما عليك هوا الضغط على احدى العضمات في الازرار
 *]]
 return edit(ChatId,Msg_id,TextMahibesAgane, 'md', true, false, reply_markup)
@@ -18335,7 +18337,7 @@ local Rrr = Texting[math.random(#Texting)]
 au ={
 type = "audio",
 media = "https://t.me/mmsst13/"..Rrr.."",
-caption = '٭ اليك اغنيه عشوائيه من البوت\n',
+caption = '٭ اليك اغنيه عشوائيه من ال\n',
 parse_mode = "Markdown"                                                                                                                                                               
 }     
 keyboard = {} 
@@ -18348,6 +18350,8 @@ local mm = Msg_id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..mm.."&media="..JSON.encode(au).."&reply_markup="..JSON.encode(keyboard))
 end 
 end
+
+
 if Text and Text:match('(%d+)/sorty(%d+)') then
 local UserId = {Text:match('(%d+)/sorty(%d+)')}
 local current = math.floor(tonumber(UserId[2]))
@@ -18654,7 +18658,7 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = datar
 }
-local txx = '❍ قائمه مطورين البوت'
+local txx = '❍ قائمه مطورين ال'
 LuaTele.editMessageText(ChatId,Msg_id,txx, 'md', true, false, reply_markup)
 end
 if Text and Text:match('(%d+)/Nzlne') then
@@ -18828,7 +18832,7 @@ local TextHelp = [[*
 ❍الصور
 ــــــــــــــــــــــ❍ـــــــــــــــــــــ
 ❍ الماركداون
-❍ البوتات
+❍ الات
 ❍ التكرار
 ❍ الكلايش
 ❍ السيلفي
@@ -18891,7 +18895,7 @@ local TextHelp = [[*
 ❍ تفعيل ، تعطيل ➢ الرابط
 ❍ جهاتي ،ايدي ، رسائلي
 ❍ تعديلاتي ، نقاطي
-❍ كشف البوتات
+❍ كشف الات
 ــــــــــــــــــــــ❍ـــــــــــــــــــــ
 ❍ وضع ، ضع ➢ الاوامر التاليه 
 ❍ اسم ، رابط ، صوره
@@ -18900,7 +18904,7 @@ local TextHelp = [[*
 ❍ حذف ، مسح ➢ الاوامر التاليه
 ❍ قائمه المنع ، المحظورين 
 ❍ المميزين ، المكتومين ، القوانين
-❍ المطرودين ، البوتات ، الصوره
+❍ المطرودين ، الات ، الصوره
 ❍ الرابط
 *]]
 edit(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
@@ -18974,7 +18978,7 @@ data = {
 }
 }
 local TextHelp = [[*
-❍ تم تفعيل وضع الاشتراك الاجباري علي اوامر البوت فقط مثل (الحظر/الكتم الخ..)
+❍ تم تفعيل وضع الاشتراك الاجباري علي اوامر ال فقط مثل (الحظر/الكتم الخ..)
 *]]
 Redis:del(black.."chmembers")
 edit(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
@@ -19024,7 +19028,7 @@ local TextHelp = [[*
 ❍ رفع، كشف ➢ القيود
 ❍ تنزيل الكل ➢ بالرد ، بالمعرف
 ــــــــــــــــــــــ❍ـــــــــــــــــــــ
-❍ لتغيير رد الرتب في البوت
+❍ لتغيير رد الرتب في ال
 ــــــــــــــــــــــ❍ـــــــــــــــــــــ
 ❍ تغيير رد ➢ اسم الرتبه والنص
 ❍ المطور ، المنشئ الاساسي
@@ -19125,9 +19129,9 @@ local TextHelp = [[*
 ❍ تحديث
 ــــــــــــــــــــــ❍ـــــــــــــــــــــ
 ❍ تفعيل ، تعطيل ➢  الاوامر التاليه ↓
-❍ البوت الخدمي ، المغادرة ، الاذاعه
+❍ ال الخدمي ، المغادرة ، الاذاعه
 ــــــــــــــــــــــ❍ـــــــــــــــــــــ
-❍ اوامر المطور في البوت
+❍ اوامر المطور في ال
 ــــــــــــــــــــــ❍ـــــــــــــــــــــ
 ❍ تفعيل ، تعطيل ، الاحصائيات
 ❍ رفع، تنزيل ➢ منشئ اساسي
@@ -19283,7 +19287,7 @@ data = {
 }
 }
 local TextHelp = [[*
-❍ قائمه الالعاب البوت
+❍ قائمه الالعاب ال
 ــــــــــــــــــــــ❍ـــــــــــــــــــــ
 ❍ لعبة المختلف ➢ المختلف
 ❍ لعبة الامثله ➢ امثله
@@ -19300,7 +19304,7 @@ local TextHelp = [[*
 ❍ لعبة لو خيروك ➢ خيروك
 ❍ لعبة الصراحه والجرأة ➢ صراحه
 ❍ لعبه باد للأسئله +18 ➢ باد
-❍ لعبه جريمتي ويقوم البوت بإعطائك جريمه ➢ جريمتي
+❍ لعبه جريمتي ويقوم ال بإعطائك جريمه ➢ جريمتي
 ــــــــــــــــــــــ❍ـــــــــــــــــــــ
 ❍ نقاطي ➢ لعرض عدد الارباح
 ❍ بيع نقاطي ➢ { العدد } ➢ لبيع كل نقطه مقابل {50} رساله
@@ -19334,14 +19338,14 @@ data = {
 }
 }
 local TextHelp = [[*
-❍ توجد ➢ 6 اوامر في البوت
+❍ توجد ➢ 6 اوامر في ال
 ــــــــــــــــــــــ❍ـــــــــــــــــــــ
 ❍ 1 ➢ اوامر الحمايه
 ❍ 2 ➢ اوامر الادمنيه
 ❍ 3 ➢ اوامر المدراء
 ❍ 4 ➢ اوامر المنشئين
-❍ 5 ➢ اوامر مطورين البوت
-❍ 6 ➢ اوامر التسلية البوت
+❍ 5 ➢ اوامر مطورين ال
+❍ 6 ➢ اوامر التسلية ال
 *]]
 edit(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
 end
@@ -19428,7 +19432,7 @@ local UserId = Text:match('(%d+)/lock_bots')
 if tonumber(IdUser) == tonumber(UserId) then
 Redis:set(black.."Lock:Bot:kick"..ChatId,"del")  
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '- رجوع', data =UserId..'/'.. 'NoNextSeting'},},}}
-edit(ChatId,Msg_id,Reply_Status(IdUser,"❍ تم قفـل البوتات").Lock, 'md', true, false, reply_markup)
+edit(ChatId,Msg_id,Reply_Status(IdUser,"❍ تم قفـل الات").Lock, 'md', true, false, reply_markup)
 end
 elseif Text and Text:match('(%d+)/lock_fwd') then
 local UserId = Text:match('(%d+)/lock_fwd')
@@ -20080,7 +20084,7 @@ end
 end
 if Text and Text:match('/leftgroup@(.*)') then
 local UserId = Text:match('/leftgroup@(.*)')
-LuaTele.answerCallbackQuery(data.id, "❍ تم مغادره البوت من الجروب", true)
+LuaTele.answerCallbackQuery(data.id, "❍ تم مغادره ال من الجروب", true)
 LuaTele.leaveChat(UserId)
 end
 
@@ -20405,7 +20409,7 @@ data = {
 {text = GetSetieng(ChatId).lock_hash, data = '&'},{text = 'التاك : ', data =IdUser..'/'.. 'Status_tags'},
 },
 {
-{text = GetSetieng(ChatId).lock_bots, data = '&'},{text = 'البوتات : ', data =IdUser..'/'.. 'Status_bots'},
+{text = GetSetieng(ChatId).lock_bots, data = '&'},{text = 'الات : ', data =IdUser..'/'.. 'Status_bots'},
 },
 {
 {text = '- التالي ... ', data =IdUser..'/'.. 'NextSeting'}
@@ -20649,17 +20653,17 @@ local UserId = Text:match('(%d+)/Status_bots')
 if tonumber(IdUser) == tonumber(UserId) then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 {
-{text = 'قفل البوتات', data =UserId..'/'.. 'lock_bots'},{text = 'قفل البوتات بالطرد', data =UserId..'/'.. 'lock_botskick'},
+{text = 'قفل الات', data =UserId..'/'.. 'lock_bots'},{text = 'قفل الات بالطرد', data =UserId..'/'.. 'lock_botskick'},
 },
 {
-{text = 'فتح البوتات', data =UserId..'/'.. 'unlock_bots'},
+{text = 'فتح الات', data =UserId..'/'.. 'unlock_bots'},
 },
 {
 {text = '- رجوع', data =UserId..'/'.. 'NoNextSeting'},
 },
 }
 }
-edit(ChatId,Msg_id,"❍ عليك اختيار نوع القفل او الفتح على امر البوتات", 'md', true, false, reply_markup)
+edit(ChatId,Msg_id,"❍ عليك اختيار نوع القفل او الفتح على امر الات", 'md', true, false, reply_markup)
 end
 elseif Text and Text:match('(%d+)/Status_fwd') then
 local UserId = Text:match('(%d+)/Status_fwd')
@@ -20990,7 +20994,7 @@ local UserId = Text:match('(%d+)/unlock_bots')
 if tonumber(IdUser) == tonumber(UserId) then
 Redis:del(black.."Lock:Bot:kick"..ChatId)  
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '- رجوع', data =UserId..'/'.. 'NoNextSeting'},},}}
-edit(ChatId,Msg_id,Reply_Status(IdUser,"❍ تم فتح البوتات").unLock, 'md', true, false, reply_markup)
+edit(ChatId,Msg_id,Reply_Status(IdUser,"❍ تم فتح الات").unLock, 'md', true, false, reply_markup)
 end
 elseif Text and Text:match('(%d+)/unlock_fwd') then
 local UserId = Text:match('(%d+)/unlock_fwd')
@@ -21088,13 +21092,13 @@ if Text and Text:match('(%d+)/Dev') then
 local UserId = Text:match('(%d+)/Dev')
 if tonumber(IdUser) == tonumber(UserId) then
 Redis:del(black.."Dev:Groups") 
-edit(ChatId,Msg_id,"❍ تم مسح مطورين البوت", 'md', false)
+edit(ChatId,Msg_id,"❍ تم مسح مطورين ال", 'md', false)
 end
 elseif Text and Text:match('(%d+)/Devss') then
 local UserId = Text:match('(%d+)/Devss')
 if tonumber(IdUser) == tonumber(UserId) then
 Redis:del(black.."Devss:Groups") 
-edit(ChatId,Msg_id,"❍ تم مسح مطورين الثانوين من البوت", 'md', false)
+edit(ChatId,Msg_id,"❍ تم مسح مطورين الثانوين من ال", 'md', false)
 end
 elseif Text and Text:match('(%d+)/Supcreator') then
 local UserId = Text:match('(%d+)/Supcreator')
